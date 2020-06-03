@@ -1,0 +1,7 @@
+---
+applications:
+- name: directconnections
+  path: build/
+  instances: 1
+  buildpack: staticfile_buildpack
+  memory: 256M
