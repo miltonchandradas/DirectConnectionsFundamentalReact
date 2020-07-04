@@ -403,3 +403,17 @@ h2:after {
   margin-top: 20px;
 }
 
+
+/* ----------------------------------------------- */
+/* UI5 COMPONENTS */
+/* ----------------------------------------------- */
+
+.ui5card {
+  width: 500px;
+  margin: 20px;
+}
+
+.ui5AnalyticalTableCard {
+  width: 900px;
+  margin: 20px;
+}

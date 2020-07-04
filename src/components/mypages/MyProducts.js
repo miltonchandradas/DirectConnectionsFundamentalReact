@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MyKarmaPoints = () => {
+const MyProducts = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const MyKarmaPoints = () => {
     )
 }
 
-export default MyKarmaPoints
+export default MyProducts

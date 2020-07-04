@@ -133,7 +133,7 @@ const Login = (props) => {
                                          text: "The email is valid...",
                                       }
                                     : {
-                                         state: "error",
+                                         state: "",
                                          text: "Please enter a valid email...",
                                       }
                                  : {
@@ -162,7 +162,7 @@ const Login = (props) => {
                                          text: "The password length is valid...",
                                       }
                                     : {
-                                         state: "error",
+                                         state: "",
                                          text:
                                             "Password must be at  least 4 characters...",
                                       }

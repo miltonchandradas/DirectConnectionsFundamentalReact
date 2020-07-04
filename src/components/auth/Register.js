@@ -190,7 +190,7 @@ const Register = (props) => {
                                          text: "The email is valid...",
                                       }
                                     : {
-                                         state: "error",
+                                         state: "",
                                          text: "Please enter a valid email...",
                                       }
                                  : {
@@ -221,7 +221,7 @@ const Register = (props) => {
                                          text: "The password is valid...",
                                       }
                                     : {
-                                         state: "error",
+                                         state: "",
                                          text:
                                             "Password must be at  least 4 characters (AND) passwords must match...",
                                       }
@@ -253,7 +253,7 @@ const Register = (props) => {
                                          text: "The password is valid...",
                                       }
                                     : {
-                                         state: "error",
+                                         state: "",
                                          text:
                                             "Password must be at  least 4 characters...",
                                       }

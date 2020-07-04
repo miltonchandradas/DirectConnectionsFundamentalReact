@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 
 import Header from "./Header";
 import Features from "./Features";
@@ -7,9 +7,16 @@ import Volunteer from "./Volunteer";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
-const Home = (props) => {
+import MessageContext from "../../context/message/messageContext";
 
-   console.log(props);
+const Home = (props) => {
+   const messageContext = useContext(MessageContext);
+
+   useEffect(() => {
+      messageContext.removeMessage();
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
 
    return (
       <div>

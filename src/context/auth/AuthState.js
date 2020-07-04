@@ -16,7 +16,7 @@ import {
 const AuthState = (props) => {
    const initialState = {
       token: localStorage.getItem("token"),
-      isAuthenticated: false,
+      isAuthenticated: localStorage.getItem("token") ? true : false,
       error: null,
    };
 
@@ -24,7 +24,8 @@ const AuthState = (props) => {
 
    const baseUrl =
       process.env.REACT_APP_HOSTED_URL ||
-      "https://mynodeproject-active-impala.cfapps.eu10.hana.ondemand.com";
+      /* "https://mynodeproject-active-impala.cfapps.eu10.hana.ondemand.com"; */
+      "https://myfullstack-srv-courteous-ratel-kz.cfapps.eu10.hana.ondemand.com";
 
    // Register
    const register = async (formData) => {
