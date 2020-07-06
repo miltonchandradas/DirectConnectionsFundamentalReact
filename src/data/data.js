@@ -45,27 +45,64 @@ export const tableColumns = [
    },
 ];
 
+export const productColumns = [
+   {
+      Header: "Category",
+      accessor: "CATEGORYNAME", // String-based value accessors!
+   },
+   {
+      Header: "Description",
+      accessor: "DESCRIPTION",
+   },
+   {
+      Header: "Price in $",
+      accessor: "PRICE",
+   },
+   {
+      Header: "Discount",
+      accessor: "DISCOUNTLEVEL",
+   },
+];
+
+export const serviceColumns = [
+   {
+      Header: "Category",
+      accessor: "CATEGORYNAME", // String-based value accessors!
+   },
+   {
+      Header: "Description",
+      accessor: "DESCRIPTION",
+   },
+   {
+      Header: "Estimated Hours",
+      accessor: "ESTIMATEDHOURS",
+   },
+   {
+      Header: "Difficulty",
+      accessor: "DIFFICULTYLEVEL",
+   },
+];
+
 
 export const categories = [
    {
-      "key": "1",
-      "text": "Grocery Pickup"
-   }, 
-   {
-      "key": "2",
-      "text": "Giving Rides"
+      key: "1",
+      text: "Grocery Pickup",
    },
    {
-      "key": "3",
-      "text": "Home Improvement"
+      key: "2",
+      text: "Giving Rides",
    },
    {
-      "key": "4",
-      "text": "Tuition"
+      key: "3",
+      text: "Home Improvement",
    },
    {
-      "key": "5",
-      "text": "Home Helper"
-   }
-]
-
+      key: "4",
+      text: "Tuition",
+   },
+   {
+      key: "5",
+      text: "Home Helper",
+   },
+];
