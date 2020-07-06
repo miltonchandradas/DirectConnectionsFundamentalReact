@@ -47,12 +47,135 @@ header {
 }
 
 /* ----------------------------------------------- */
+/* LOGIN */
+/* ----------------------------------------------- */
+
+.section-login {
+  width:50%;
+  margin:auto;
+}
+
+.login h1 {
+  color: #000;
+}
+
+.h1-span {
+  color: #427CAC;
+}
+
+.fb-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+
+}
+
+
+/* ----------------------------------------------- */
+/* REGISTER */
+/* ----------------------------------------------- */
+
+.section-register {
+  width:50%;
+  margin:auto;
+}
+
+.register h1 {
+  color: #000;
+}
+
+/* ----------------------------------------------- */
+/* MY PAGES */
+/* ----------------------------------------------- */
+
+.section-mypages {
+  width: 50%;
+  margin: auto;
+  padding:0px;
+}
+
+.control-margin-top {
+  margin-top: 20px;
+}
+
+.control-margin-bottom {
+  margin-top: 20px;
+}
+
+/* ----------------------------------------------- */
+/* MY LOCATION */
+/* ----------------------------------------------- */
+
+.section-mylocation {
+  width: 40%;
+  margin: auto;
+  padding:0px;
+}
+
+
+/* ----------------------------------------------- */
+/* ABOUT ME */
+/* ----------------------------------------------- */
+
+.aboutme-panel  {
+
+  margin-top:100px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+}
+
+
+/* ----------------------------------------------- */
+/* MY ACCOUNT */
+/* ----------------------------------------------- */
+
+.section-myaccount {
+  width:80%;
+  margin:auto;
+  padding:0px;
+}
+
+/* ----------------------------------------------- */
+/* MY ORDERS */
+/* ----------------------------------------------- */
+
+.section-myorders {
+  width:50%;
+  margin:auto;
+  padding:0px;
+}
+
+/* ----------------------------------------------- */
+/* MY OPPORTUNITIES */
+/* ----------------------------------------------- */
+
+.section-myopportunities {
+  width:90%;
+  margin:auto;
+  padding:0px;
+}
+
+/* ----------------------------------------------- */
+/* MY DASHBOARD */
+/* ----------------------------------------------- */
+
+.section-mydashboard {
+  width:80%;
+  margin:auto;
+  padding:0px;
+}
+
+
+/* ----------------------------------------------- */
 /* FEATURES */
 /* ----------------------------------------------- */
 
 .section-features  {
   width:80%;
   margin:auto;
+  
 }
 
 
@@ -315,27 +438,6 @@ h2:after {
 /* PAGES */
 /* ----------------------------------------------- */
 
-.login {
-  width:70%;
-  margin:auto;
-  margin-top: 100px;
-}
-
-.login h1 {
-  color: #000;
-}
-
-.h1-span {
-  color: #427CAC;
-}
-
-.fb-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px;
-
-}
 
 /* ----------------------------------------------- */
 /* FUNDAMENTAL REACT FONTS */

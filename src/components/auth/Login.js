@@ -107,7 +107,9 @@ const Login = (props) => {
    };
 
    return (
-      <div className="login">
+      <section className="section-login login">
+         <h2>Login</h2>
+
          <LayoutGrid cols={2}>
             <Panel className="fr-panel">
                <Panel.Body>
@@ -197,7 +199,7 @@ const Login = (props) => {
                </Panel.Body>
             </Panel>
          </LayoutGrid>
-      </div>
+      </section>
    );
 };
 

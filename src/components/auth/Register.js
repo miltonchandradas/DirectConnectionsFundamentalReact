@@ -135,7 +135,8 @@ const Register = (props) => {
    };
 
    return (
-      <div className="login">
+      <section className="section-register register">
+         <h2>Register</h2>
          <LayoutGrid cols={2}>
             <Panel className="fr-panel">
                <Panel.Body>
@@ -299,7 +300,7 @@ const Register = (props) => {
                </Panel.Body>
             </Panel>
          </LayoutGrid>
-      </div>
+      </section>
    );
 };
 

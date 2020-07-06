@@ -1,7 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import KarmaCards from "../cards/KarmaCards";
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -11,12 +10,12 @@ const MyDashboard = (props) => {
    const messageContext = useContext(MessageContext);
 
    const {
-      login,
-      error,
-      clearError,
       isAuthenticated,
-      fbResponse,
    } = authContext;
+
+   const {
+      removeMessage
+   } = messageContext;
 
    const history = useHistory();
 
@@ -25,15 +24,16 @@ const MyDashboard = (props) => {
          history.push("/login");
       }
 
-      messageContext.setMessage("Successfully registered...", "success", true);
+      removeMessage();
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isAuthenticated]);
 
    return (
-      <div className="mydashboard">
+      <section className="section-mydashboard">
+         <h2>My Dashboard</h2>
          <KarmaCards></KarmaCards>
-      </div>
+      </section>
    );
 };
 

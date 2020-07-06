@@ -11,12 +11,15 @@ import {
    FACEBOOK_RESPONSE,
    AUTH_ERROR,
    CLEAR_ERROR,
+   SET_USER,
+   REMOVE_USER
 } from "../types";
 
 const AuthState = (props) => {
    const initialState = {
       token: localStorage.getItem("token"),
       isAuthenticated: localStorage.getItem("token") ? true : false,
+      user: null,
       error: null,
    };
 
@@ -122,6 +125,34 @@ const AuthState = (props) => {
       }
    };
 
+   const getUser = async () => {
+
+      const config = {
+         headers: { Authorization: `Bearer ${localStorage.token}` },
+      };
+
+      try {
+         const res = await axios.get(
+            `${baseUrl}/api/v1/auth/me`,
+            config
+         );
+   
+         console.log("Result: ", res);
+
+         dispatch({
+            type: SET_USER,
+            payload: res.data.data
+         })
+
+      } catch (error) {
+         dispatch({
+            type: REMOVE_USER,
+            payload: error,
+         });
+      }
+      
+   }
+
    // Logout
    const logout = () => dispatch({ type: LOGOUT });
 
@@ -134,9 +165,11 @@ const AuthState = (props) => {
             token: state.token,
             isAuthenticated: state.isAuthenticated,
             error: state.error,
+            user: state.user,
             register,
             login,
             logout,
+            getUser,
             fbResponse,
             clearError,
          }}

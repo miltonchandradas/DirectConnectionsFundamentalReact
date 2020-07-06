@@ -8,8 +8,10 @@ export default (state, action) => {
          return {
             ...state,
             msg: "",
+            linkText: "Learn more",
             type: "information",
             visible: false,
+            isDismissible: true,
          };
 
       default:

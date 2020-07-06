@@ -44,3 +44,28 @@ export const tableColumns = [
       accessor: "friend.age",
    },
 ];
+
+
+export const categories = [
+   {
+      "key": "1",
+      "text": "Grocery Pickup"
+   }, 
+   {
+      "key": "2",
+      "text": "Giving Rides"
+   },
+   {
+      "key": "3",
+      "text": "Home Improvement"
+   },
+   {
+      "key": "4",
+      "text": "Tuition"
+   },
+   {
+      "key": "5",
+      "text": "Home Helper"
+   }
+]
+

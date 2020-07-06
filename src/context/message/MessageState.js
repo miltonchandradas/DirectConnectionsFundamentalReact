@@ -1,22 +1,21 @@
 import React, { useReducer } from "react";
-import AlertContext from "./messageContext";
-import AlertReducer from "./messageReducer";
+import MessageContext from "./messageContext";
+import MessageReducer from "./messageReducer";
 
 import { SET_MESSAGE, REMOVE_MESSAGE } from "../types";
 
 const MessageState = (props) => {
-   const initialState = { msg: "", type: "information", visible: false, isDismissible: false };
+   const initialState = { msg: "", type: "information", visible: false, isDismissible: true, linkText: "Learn more" };
 
-   const [state, dispatch] = useReducer(AlertReducer, initialState);
+   const [state, dispatch] = useReducer(MessageReducer, initialState);
 
    // Set Alert
-   const setMessage = (msg, type, visible, isDismissible) => {
+   const setMessage = (msg, type, visible, isDismissible, linkText = "Learn more") => {
       dispatch({
          type: SET_MESSAGE,
-         payload: { msg, type, visible, isDismissible},
+         payload: { msg, type, visible, isDismissible, linkText},
       });
 
-      /* setTimeout(() => dispatch({ type: REMOVE_MESSAGE }), 5000); */
    };
 
    const removeMessage = () => {
@@ -24,7 +23,7 @@ const MessageState = (props) => {
    }
 
    return (
-      <AlertContext.Provider
+      <MessageContext.Provider
          value={{
             message: state,
             setMessage,
@@ -32,7 +31,7 @@ const MessageState = (props) => {
          }}
       >
          {props.children}
-      </AlertContext.Provider>
+      </MessageContext.Provider>
    );
 };
 

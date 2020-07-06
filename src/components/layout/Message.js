@@ -9,7 +9,7 @@ const Message = () => {
 
    return (
       <div className="fr-messagestrip">
-         {message.visible ? <MessageStrip dismissible={message.isDismissible} link="#" linkText="Learn More" type={message.type} >
+         {message.visible ? <MessageStrip dismissible={message.isDismissible} link="#" linkText={message.linkText} type={message.type} >
             {message.msg}
          </MessageStrip> : null}
          
