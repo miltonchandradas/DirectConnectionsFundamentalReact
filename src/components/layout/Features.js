@@ -3,7 +3,6 @@ import React from "react";
 import { LayoutGrid } from "fundamental-react/LayoutGrid";
 import { Panel } from "fundamental-react/Panel";
 import { Icon } from "fundamental-react/Icon";
-import { InlineHelp } from 'fundamental-react/InlineHelp';
 
 const Features = () => {
    return (
@@ -13,20 +12,18 @@ const Features = () => {
          <LayoutGrid className="fr-layout">
             <Panel>
                <Panel.Body>
-               <Icon glyph="family-care" size="l" className="icon-big"/>
-                   <h3>Provide a service</h3>
+                  <Icon glyph="family-care" size="l" className="icon-big" />
+                  <h3 style={{ marginBottom: "15px" }}>Provide a service</h3>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Expedita voluptates unde facilis iste dicta sequi minima sed
                   ipsa blanditiis enim laboriosam ea beatae recusandae delectus
                   iure quidem dolor, corporis in?
-                  
-                  <InlineHelp className="fr-inlinehelp" text="Lorem ipsum dolor sit amet, consectetur adipiscing." />
                </Panel.Body>
             </Panel>
             <Panel>
                <Panel.Body>
-               <Icon glyph="favorite" size="l" className="icon-big"/>
-               <h3>Browse for services</h3>
+                  <Icon glyph="favorite" size="l" className="icon-big" />
+                  <h3 style={{ marginBottom: "15px" }}>Browse for services</h3>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Explicabo necessitatibus aspernatur autem nostrum debitis
                   possimus pariatur provident consectetur impedit iure?
@@ -34,8 +31,8 @@ const Features = () => {
             </Panel>
             <Panel>
                <Panel.Body>
-                  <Icon glyph="cart" size="l" className="icon-big"/>
-                  <h3>My shopping cart</h3>
+                  <Icon glyph="cart" size="l" className="icon-big" />
+                  <h3 style={{ marginBottom: "15px" }}>My shopping cart</h3>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Debitis dolorum ad fuga error cupiditate, hic officiis
                   expedita cumque ut nisi voluptatum dignissimos est corporis

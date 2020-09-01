@@ -16,11 +16,14 @@ import ServiceState from "./context/service/ServiceState";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
 import "./App.css";
+import "./resources/icons/Fonts/SAP-icons.woff";
+import "./resources/72_Web/72-Regular.woff";
 
 import MyAccount from "./components/mypages/MyAccount";
 import MyOrders from "./components/mypages/MyOrders";
 import MyKarmaPoints from "./components/mypages/MyKarmaPoints";
 import MyOpportunities from "./components/mypages/MyOpportunities";
+import MyVolunteeringOpportunities from "./components/mypages/MyVolunteeringOpportunities";
 import MyServices from "./components/mypages/MyServices";
 import MyProducts from "./components/mypages/MyProducts";
 import MyFriends from "./components/mypages/MyFriends";
@@ -62,6 +65,11 @@ const App = () => {
                               exact
                               path="/myopportunities"
                               component={MyOpportunities}
+                           />
+                           <PrivateRoute
+                              exact
+                              path="/myvolunteeringopportunities"
+                              component={MyVolunteeringOpportunities}
                            />
                            <PrivateRoute
                               exact

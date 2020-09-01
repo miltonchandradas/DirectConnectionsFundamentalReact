@@ -16,9 +16,11 @@ const OpportunityState = (props) => {
       "https://myfullstack-srv-courteous-ratel-kz.cfapps.eu10.hana.ondemand.com";
 
    // Get Opportunities
-   const getOpportunities = async () => {
+   const getOpportunities = async (id, self) => {
       try {
-         const res = await axios.get(`${baseUrl}/api/v1/opportunities`);
+         const res = await axios.get(
+            `${baseUrl}/api/v1/opportunities?active=true&userId=${id}&self=${self}`
+         );
 
          console.log("Result: ", res.data);
 

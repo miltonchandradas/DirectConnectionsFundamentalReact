@@ -1,3 +1,4 @@
+
 /* ----------------------------------------------- */
 /* BASIC SETUP */
 /* ----------------------------------------------- */
@@ -161,8 +162,8 @@ header {
 /* MY ORDERS */
 /* ----------------------------------------------- */
 
-.section-myorders {
-  width:50%;
+.section-myactivity {
+  width:90%;
   margin:auto;
   padding:0px;
 }
@@ -465,14 +466,14 @@ h2:after {
 
 @font-face {
   font-family: "72";
-  src: url("/node_modules/@sap-theming/theming-base-content/content/Base/baseLib/sap_base_fiori/fonts/72-Regular.woff") format("woff"); 
+  src: url("resources/72_Web/72-Regular.woff");
   font-weight: normal;
   font-style: normal;
 };
 
 @font-face {
   font-family: "SAP-icons";
-  src: url("/node_modules/@sap-theming/theming-base-content/content/Base/baseLib/sap_belize/fonts/SAP-icons.woff") format("woff"); 
+  src: url("resources/icons/Fonts/SAP-icons.woff") format("woff"); 
   font-weight: normal;
   font-style: normal;
 }

@@ -15,17 +15,22 @@ const Header = (props) => {
    return (
       <header>
          <div className="header-text">
-            <h1>DIRECT CONNECTIONS</h1>
+            <h1>HELPFUL HEROES</h1>
             <h1>Bringing the whole world closer !</h1>
 
             <Button
                option="emphasized"
                className="fr-button"
+               style={{ display: "block", margin: "20px" }}
                onClick={onRegisterHandler}
             >
                How can I help ?
             </Button>
-            <Button className="fr-button" onClick={onLearnMoreHandler}>
+            <Button
+               className="fr-button"
+               style={{ display: "block", margin: "20px" }}
+               onClick={onLearnMoreHandler}
+            >
                Learn more...
             </Button>
          </div>

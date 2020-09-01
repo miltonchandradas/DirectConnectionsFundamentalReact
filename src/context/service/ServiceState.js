@@ -40,9 +40,17 @@ const ServiceState = (props) => {
    };
 
    // Get Services
-   const getMyServices = async (id) => {
+   const getMyServices = async (id, active) => {
       try {
-         const res = await axios.get(`${baseUrl}/api/v1/services?id=${id}`);
+         let res = "";
+
+         if (!active) {
+            res = await axios.get(`${baseUrl}/api/v1/services?&id=${id}`);
+         } else {
+            res = await axios.get(
+               `${baseUrl}/api/v1/services?active=${active}&id=${id}`
+            );
+         }
 
          console.log("Result: ", res.data);
 
@@ -64,7 +72,7 @@ const ServiceState = (props) => {
             services: state.services,
             myServices: state.myServices,
             getServices,
-            getMyServices
+            getMyServices,
          }}
       >
          {props.children}

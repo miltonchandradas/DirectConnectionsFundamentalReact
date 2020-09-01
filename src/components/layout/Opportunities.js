@@ -4,10 +4,9 @@ import { Menu } from "fundamental-react/Menu";
 import { Button } from "fundamental-react/Button";
 import { Popover } from "fundamental-react/Popover";
 import { Avatar } from "fundamental-react/Avatar";
-import { Checkbox } from 'fundamental-react/Forms';
+import { Checkbox } from "fundamental-react/Forms";
 
 const Opportunities = () => {
-
    return (
       <Table
          headers={[
@@ -28,7 +27,7 @@ const Opportunities = () => {
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     photo="https://robohash.org/green?size=50x50"
+                     backgroundImageUrl="https://robohash.org/green?size=50x50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
@@ -59,12 +58,12 @@ const Opportunities = () => {
             {
                rowData: [
                   <Checkbox
-                     checked={undefined}
+                     checked={false}
                      name="Florence"
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     photo="https://robohash.org/brown?size=50x50"
+                     backgroundImageUrl="https://robohash.org/brown?size=50x50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
@@ -95,12 +94,12 @@ const Opportunities = () => {
             {
                rowData: [
                   <Checkbox
-                     checked={undefined}
+                     checked={false}
                      name="Mark"
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     photo="https://robohash.org/Q27.png?set=set1&size=50x50"
+                     backgroundImageUrl="https://robohash.org/Q27.png?set=set1&size=50x50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
@@ -131,12 +130,12 @@ const Opportunities = () => {
             {
                rowData: [
                   <Checkbox
-                     checked={undefined}
+                     checked={false}
                      name="Jenna"
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     photo="https://robohash.org/water?&size=50x50"
+                     backgroundImageUrl="https://robohash.org/water?&size=50x50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">

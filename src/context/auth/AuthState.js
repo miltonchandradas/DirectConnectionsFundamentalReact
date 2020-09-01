@@ -27,7 +27,6 @@ const AuthState = (props) => {
 
    const baseUrl =
       process.env.REACT_APP_HOSTED_URL ||
-      /* "https://mynodeproject-active-impala.cfapps.eu10.hana.ondemand.com"; */
       "https://myfullstack-srv-courteous-ratel-kz.cfapps.eu10.hana.ondemand.com";
 
    // Register

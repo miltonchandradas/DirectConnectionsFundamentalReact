@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, Fragment } from "react";
 
 import axios from "axios";
 
@@ -6,9 +6,11 @@ import { LayoutGrid } from "fundamental-react/LayoutGrid";
 import { Panel } from "fundamental-react/Panel";
 import { Button } from "fundamental-react/Button";
 import { ComboboxInput } from "fundamental-react/ComboboxInput";
+import { Table } from "fundamental-react/Table";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
+import ServiceContext from "../../context/service/serviceContext";
 
 import { categories } from "../../data/data";
 
@@ -25,11 +27,20 @@ import { Link } from "fundamental-react/Link";
 const MyAccount = () => {
    const authContext = useContext(AuthContext);
    const messageContext = useContext(MessageContext);
+   const serviceContext = useContext(ServiceContext);
    const { isAuthenticated, user, getUser } = authContext;
    const { removeMessage } = messageContext;
+   const { myServices, getMyServices } = serviceContext;
 
    const [displayMessage, setDisplayMessage] = useState(false);
    const [selectedKey, setSelectedKey] = useState("0");
+
+   const [defaultHeaders, setDefaultHeaders] = useState([
+      "Description",
+      "Start Date",
+      "State",
+   ]);
+   const [defaultData, setDefaultData] = useState([]);
 
    const marginStyle = {
       marginTop: "20px",
@@ -40,10 +51,33 @@ const MyAccount = () => {
          getUser();
       } else {
          removeMessage();
+         getMyServices(user.ID, true);
+      }
+
+      if (myServices) {
+         setDefaultData(
+            myServices.map((service) => {
+               return {
+                  rowData: [
+                     service.DESCRIPTION,
+                     formatDate(service.STARTDATE),
+                     service.STATE,
+                  ],
+               };
+            })
+         );
       }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [isAuthenticated]);
+   }, [isAuthenticated, user, myServices]);
+
+   const formatDate = (startDate) => {
+      let myDate = new Date(startDate);
+
+      return `${myDate.getUTCFullYear()}-${
+         myDate.getUTCMonth() + 1
+      }-${myDate.getUTCDate()}`;
+   };
 
    const onSubmitClick = async (e) => {
       /* setEditMode(true); */
@@ -75,7 +109,7 @@ const MyAccount = () => {
       <section className="section-myaccount">
          <h2>My Account</h2>
 
-         <LayoutGrid cols={3}>
+         <LayoutGrid cols={4}>
             <Panel>
                {user && (
                   <Panel.Body>
@@ -140,37 +174,43 @@ const MyAccount = () => {
                   </Panel.Body>
                )}
             </Panel>
-            <Panel>
+            <Panel colSpan={3}>
                {user && (
                   <Panel.Body>
                      <FormFieldset>
                         <FormLegend>Services Provided</FormLegend>
                         <FormItem>
-                           <MessageStrip style={marginStyle} type="warning">
-                              Currently, you do not provide any services
-                           </MessageStrip>
-                           <Link href="/myservices">
-                              Click here to add a service...
-                           </Link>
+                           {myServices ? (
+                              <Fragment>
+                                 <Table
+                                    style={{
+                                       border: "1px solid black",
+                                       tableLayout: "auto",
+                                    }}
+                                    headers={defaultHeaders}
+                                    richTable
+                                    tableData={defaultData}
+                                 >
+                                 
+                                 </Table>
+                              </Fragment>
+                           ) : (
+                              <Fragment>
+                                 <MessageStrip
+                                    style={marginStyle}
+                                    type="warning"
+                                 >
+                                    Currently, you do not provide any services
+                                 </MessageStrip>
+                                 <Link href="/myservices">
+                                    Click here to add a service...
+                                 </Link>
+                              </Fragment>
+                           )}
                         </FormItem>
                      </FormFieldset>
                   </Panel.Body>
                )}
-            </Panel>
-            <Panel className="fr-panel">
-               <Panel.Body>
-                  <FormFieldset>
-                     <FormLegend>Products Provided</FormLegend>
-                     <FormItem>
-                        <MessageStrip style={marginStyle} type="warning">
-                           Currently, you do not provide any products
-                        </MessageStrip>
-                        <Link href="/myproducts">
-                           Click here to add a product...
-                        </Link>
-                     </FormItem>
-                  </FormFieldset>
-               </Panel.Body>
             </Panel>
          </LayoutGrid>
       </section>

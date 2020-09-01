@@ -1,39 +1,51 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import { Panel } from "fundamental-react/Panel";
-
-import AuthContext from "../../context/auth/authContext";
-import MessageContext from "../../context/message/messageContext";
+import {
+   Badge,
+   Card,
+   Text,
+   FlexBox,
+   FlexBoxJustifyContent,
+   FlexBoxWrap,
+   Icon,
+} from "@ui5/webcomponents-react";
+import { spacing } from "@ui5/webcomponents-react-base";
 
 const AboutMe = () => {
-   const authContext = useContext(AuthContext);
-   const messageContext = useContext(MessageContext);
-   const { isAuthenticated, user, getUser } = authContext;
-   const { removeMessage } = messageContext;
+   const [code, setCode] = useState({});
 
+   const baseUrl =
+      process.env.REACT_APP_HOSTED_URL ||
+      "https://myfullstack-srv-courteous-ratel-kz.cfapps.eu10.hana.ondemand.com";
 
    useEffect(() => {
-
-      if (!user) {
-         getUser();
-      } else {
-         removeMessage();
-      }
+      getCodeOfConduct();
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [isAuthenticated]);
+   }, [code]);
+
+   const getCodeOfConduct = async () => {
+      const res = await axios.get(`${baseUrl}/api/v1/conductcode`);
+      setCode(res.data.data[0]);
+
+      console.log("Result Code of Conduct: ", res);
+   };
 
    return (
       <section className="section-mypages">
-         <h2>About me...</h2>
-         <Panel className="aboutme-panel">
-            <Panel.Header>
-               <Panel.Head
-                  description={user ? `${user.FIRSTNAME} ${user.LASTNAME}`: ""}
-                  title={"Direct Connections - About me"}
-               />
-            </Panel.Header>
-         </Panel>
+         <h2>About Us...</h2>
+
+         <Card
+            heading={`Code of Conduct`}
+            subheading={`Bringing the whole world closer !!`}
+            className="ui5card"
+            style={{
+               ...spacing.sapUiContentPadding,
+            }}
+         >
+            <Text style={spacing.sapUiContentPadding}>{code.BODY}</Text>
+         </Card>
       </section>
    );
 };
