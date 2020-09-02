@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import MyVolunteeringOpportunityItem from "./MyVolunteeringOpportunityItem";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -41,24 +42,35 @@ const MyVolunteeringOpportunities = () => {
       } else {
          removeMessage();
          getOpportunities(user.ID, false);
-      }       
+      }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isAuthenticated, user]);
 
    return (
       <section className="section-myopportunities">
-         <h2>Volunteering Opportunities</h2>
+         {user && (
+            <h2>
+               Volunteering Opportunities - {user.FIRSTNAME} {user.LASTNAME}
+            </h2>
+         )}
 
          <FlexBox
             justifyContent={FlexBoxJustifyContent.Center}
             wrap={FlexBoxWrap.Wrap}
          >
             {opportunities &&
-               opportunities.map((opportunity) => {
-                  let date = opportunity.STARTDATE.substring(0, 10);
+               opportunities.map((opportunity) => (
+                  <MyVolunteeringOpportunityItem
+                     key={opportunity.ID}
+                     opportunity={opportunity}
+                     user={user}
+                  />
+
+                  /* let date = opportunity.STARTDATE.substring(0, 10);
                   return (
                      <Card
+                        key={opportunity.ID}
                         avatar={<Icon name={"add-employee"} />}
                         heading={`${opportunity.BENEFICIARYFIRSTNAME} ${opportunity.BENEFICIARYLASTNAME}`}
                         subheading={`Start Date: ${date}`}
@@ -78,8 +90,8 @@ const MyVolunteeringOpportunities = () => {
                            {opportunity.DESCRIPTION}
                         </Text>
                      </Card>
-                  );
-               })}
+                  ); */
+               ))}
          </FlexBox>
       </section>
    );

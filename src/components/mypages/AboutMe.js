@@ -34,7 +34,7 @@ const AboutMe = () => {
 
    return (
       <section className="section-mypages">
-         <h2>About Us...</h2>
+         <h2>About Us - Helpful Heroes</h2>
 
          <Card
             heading={`Code of Conduct`}

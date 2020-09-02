@@ -23,6 +23,7 @@ import {
 } from "fundamental-react/Forms";
 import { MessageStrip } from "fundamental-react/MessageStrip";
 import { Link } from "fundamental-react/Link";
+import { InfoLabel } from "fundamental-react/InfoLabel";
 
 const MyAccount = () => {
    const authContext = useContext(AuthContext);
@@ -51,25 +52,31 @@ const MyAccount = () => {
          getUser();
       } else {
          removeMessage();
-         getMyServices(user.ID, true);
-      }
 
-      if (myServices) {
-         setDefaultData(
-            myServices.map((service) => {
-               return {
-                  rowData: [
-                     service.DESCRIPTION,
-                     formatDate(service.STARTDATE),
-                     service.STATE,
-                  ],
-               };
-            })
-         );
+         async function populateMyServices(user) {
+            await getMyServices(user.ID, true);
+
+            if (defaultData.length < 1) {
+               console.log("My Services is now populated...");
+               await setDefaultData(
+                  myServices.map((service) => {
+                     return {
+                        rowData: [
+                           `${service.DESCRIPTION.substring(0, 65)}...`,
+                           formatDate(service.STARTDATE),
+                           <InfoLabel color={1}>{service.STATE}</InfoLabel>,
+                        ],
+                     };
+                  })
+               );
+            }
+         }
+
+         populateMyServices(user);
       }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [isAuthenticated, user, myServices]);
+   }, [isAuthenticated, user, defaultData]);
 
    const formatDate = (startDate) => {
       let myDate = new Date(startDate);
@@ -107,7 +114,11 @@ const MyAccount = () => {
 
    return (
       <section className="section-myaccount">
-         <h2>My Account</h2>
+         {user && (
+            <h2>
+               My Account - {user.FIRSTNAME} {user.LASTNAME}
+            </h2>
+         )}
 
          <LayoutGrid cols={4}>
             <Panel>
@@ -190,9 +201,7 @@ const MyAccount = () => {
                                     headers={defaultHeaders}
                                     richTable
                                     tableData={defaultData}
-                                 >
-                                 
-                                 </Table>
+                                 ></Table>
                               </Fragment>
                            ) : (
                               <Fragment>

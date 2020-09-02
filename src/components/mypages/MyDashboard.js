@@ -9,13 +9,9 @@ const MyDashboard = (props) => {
    const authContext = useContext(AuthContext);
    const messageContext = useContext(MessageContext);
 
-   const {
-      isAuthenticated,
-   } = authContext;
+   const { isAuthenticated, user, getUser } = authContext;
 
-   const {
-      removeMessage
-   } = messageContext;
+   const { removeMessage } = messageContext;
 
    const history = useHistory();
 
@@ -24,14 +20,22 @@ const MyDashboard = (props) => {
          history.push("/login");
       }
 
-      removeMessage();
+      if (!user) {
+         getUser();
+      } else {
+         removeMessage();
+      }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isAuthenticated]);
 
    return (
       <section className="section-mydashboard">
-         <h2>My Dashboard</h2>
+         {user && (
+            <h2>
+               My Dashboard - {user.FIRSTNAME} {user.LASTNAME}
+            </h2>
+         )}
          <KarmaCards></KarmaCards>
       </section>
    );

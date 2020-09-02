@@ -55,11 +55,15 @@ const MyServices = () => {
       }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [isAuthenticated, user, myServices]);
+   }, [isAuthenticated, user]);
 
    return (
       <section className="section-myservices">
-         <h2>My Services</h2>
+         {user && (
+            <h2>
+               My Services - {user.FIRSTNAME} {user.LASTNAME}
+            </h2>
+         )}
          <MessageStrip style={marginStyle} type="success">
             Please find below all the services that you are providing
          </MessageStrip>
@@ -73,13 +77,14 @@ const MyServices = () => {
                myServices.map((service) => {
                   return (
                      <Card
+                        key={service.ID}
                         avatar={<Icon name={"add-employee"} />}
                         heading={`${service.PROVIDERFIRSTNAME} ${service.PROVIDERLASTNAME}`}
                         subheading={`Difficulty: ${service.DIFFICULTYLEVEL}`}
                         status={isPast(service.STARTDATE) ? "Closed" : "Open"}
                         className="ui5card"
                         style={{
-                           ...spacing.sapUiContentPadding
+                           ...spacing.sapUiContentPadding,
                         }}
                         headerInteractive
                         onHeaderClick={"handleHeaderClick"}

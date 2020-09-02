@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import MyOpportunityItem from "./MyOpportunityItem";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -31,9 +32,13 @@ const MyOpportunities = () => {
    const { removeMessage } = messageContext;
    const { opportunities, getOpportunities } = opportunityContext;
 
-   const handleHeaderClick = () => {
+   /* const handleHeaderClick = () => {
       console.log("Header was clicked...");
    };
+
+   const sayHello = () => {
+      console.log("Button was clicked...");
+   }; */
 
    useEffect(() => {
       if (!user) {
@@ -41,24 +46,34 @@ const MyOpportunities = () => {
       } else {
          removeMessage();
          getOpportunities(user.ID, true);
-      }       
+      }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isAuthenticated, user]);
 
    return (
       <section className="section-myopportunities">
-         <h2>My Needs</h2>
+         {user && (
+            <h2>
+               My Needs - {user.FIRSTNAME} {user.LASTNAME}
+            </h2>
+         )}
 
          <FlexBox
             justifyContent={FlexBoxJustifyContent.Center}
             wrap={FlexBoxWrap.Wrap}
          >
             {opportunities &&
-               opportunities.map((opportunity) => {
-                  let date = opportunity.STARTDATE.substring(0, 10);
+               opportunities.map((opportunity) => (
+                  <MyOpportunityItem
+                     key={opportunity.ID}
+                     opportunity={opportunity}
+                  />
+
+                  /* let date = opportunity.STARTDATE.substring(0, 10);
                   return (
                      <Card
+                        key={opportunity.ID}
                         avatar={<Icon name={"add-employee"} />}
                         heading={`${opportunity.BENEFICIARYFIRSTNAME} ${opportunity.BENEFICIARYLASTNAME}`}
                         subheading={`Start Date: ${date}`}
@@ -68,7 +83,11 @@ const MyOpportunities = () => {
                         headerInteractive
                         onHeaderClick={handleHeaderClick}
                      >
-                        <Button design="Positive" style={{ margin: "10px" }}>
+                        <Button
+                           design="Positive"
+                           style={{ margin: "10px" }}
+                           onClick={sayHello}
+                        >
                            Edit my needs !
                         </Button>
                         <Badge
@@ -78,8 +97,8 @@ const MyOpportunities = () => {
                            {opportunity.DESCRIPTION}
                         </Text>
                      </Card>
-                  );
-               })}
+                  ); */
+               ))}
          </FlexBox>
       </section>
    );

@@ -27,7 +27,11 @@ const MyLocation = () => {
 
    return (
       <section className="section-mylocation">
-         <h2>My Location</h2>
+         {user && (
+            <h2>
+               My Location - {user.FIRSTNAME} {user.LASTNAME}
+            </h2>
+         )}
          <LayoutGrid cols={1}>
          <Panel className="fr-panel">
             {user && (

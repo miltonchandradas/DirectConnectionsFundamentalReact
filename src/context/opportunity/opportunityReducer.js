@@ -1,4 +1,8 @@
-import { SET_OPPORTUNITIES, SET_OPPORTUNITIES_FAILED } from "../types";
+import {
+   SET_OPPORTUNITIES,
+   SET_OPPORTUNITIES_FAILED,
+   UPDATE_OPPORTUNITY,
+} from "../types";
 
 export default (state, action) => {
    switch (action.type) {
@@ -8,6 +12,7 @@ export default (state, action) => {
             opportunities: action.payload,
          };
       case SET_OPPORTUNITIES_FAILED:
+      case UPDATE_OPPORTUNITY:
       default:
          return state;
    }
