@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Tab, TabGroup } from "fundamental-react/Tabs";
+import { MessageStrip } from "fundamental-react/MessageStrip";
+import { Link } from "fundamental-react/Link";
 
 import Opportunities from "./Opportunities";
 
@@ -10,11 +12,11 @@ const Volunteer = () => {
          <h2>Find the best volunteer opportunity for you</h2>
 
          <TabGroup className="fr-tabgroup">
-            <Tab id="1" title="Community">
-               <p>
+            <Tab id="1" title="Community" style={{ marginBottom: "10px" }}>
+               <MessageStrip type="success" noGlyph>
                   45 volunteers are needed in your area !! Please contact us for
                   more details on how you can help...
-               </p>
+               </MessageStrip>
 
                <Opportunities />
             </Tab>

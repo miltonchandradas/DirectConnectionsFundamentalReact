@@ -7,6 +7,7 @@ import axios from "axios";
 import {
    SET_SERVICES,
    SET_MY_SERVICES,
+   UPDATE_SERVICE,
    SET_SERVICES_FAILED,
    SET_MY_SERVICES_FAILED,
 } from "../types";
@@ -21,9 +22,9 @@ const ServiceState = (props) => {
       "https://myfullstack-srv-courteous-ratel-kz.cfapps.eu10.hana.ondemand.com";
 
    // Get Services
-   const getServices = async () => {
+   const getServices = async (id, self) => {
       try {
-         const res = await axios.get(`${baseUrl}/api/v1/services`);
+         const res = await axios.get(`${baseUrl}/api/v1/services?active=true&userId=${id}&self=${self}`);
 
          console.log("Result: ", res.data);
 
@@ -66,6 +67,46 @@ const ServiceState = (props) => {
       }
    };
 
+   const subscribeService = async (user, service) => {
+      const config = {
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.token}`,
+         },
+      };
+
+      console.log("User: ", user);
+      console.log("Service: ", service);
+
+      const payload = {
+         startDate: service.STARTDATE,
+         initiatedBy: "beneficiary",
+         providerId: service.PROVIDER_ID,
+         beneficiaryId: user.ID,
+      };
+
+      console.log("Payload: ", payload);
+
+      try {
+         const res = await axios.put(
+            `${baseUrl}/api/v1/opportunities/${service.ID}`,
+            payload,
+            config
+         );
+
+         console.log("Calling dispatch...");
+         dispatch({
+            type: UPDATE_SERVICE,
+            payload: res.data,
+         });
+      } catch (error) {
+         dispatch({
+            type: SET_SERVICES_FAILED,
+            payload: error,
+         });
+      }
+   };
+
    return (
       <ServiceContext.Provider
          value={{
@@ -73,6 +114,7 @@ const ServiceState = (props) => {
             myServices: state.myServices,
             getServices,
             getMyServices,
+            subscribeService,
          }}
       >
          {props.children}

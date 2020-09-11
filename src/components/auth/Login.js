@@ -29,7 +29,7 @@ const Login = (props) => {
 
    useEffect(() => {
       if (isAuthenticated) {
-         props.history.push("/mydashboard");
+         props.history.push("/myaccount");
       }
 
       if (error) {
@@ -139,9 +139,9 @@ const Login = (props) => {
                                          text: "Please enter a valid email...",
                                       }
                                  : {
-                                    state: "",
-                                    text: "Please enter your email..."
-                                 }
+                                      state: "",
+                                      text: "Please enter your email...",
+                                   }
                            }
                         />
                      </FormItem>
@@ -161,7 +161,8 @@ const Login = (props) => {
                                  ? isPasswordValid
                                     ? {
                                          state: "success",
-                                         text: "The password length is valid...",
+                                         text:
+                                            "The password length is valid...",
                                       }
                                     : {
                                          state: "",
@@ -169,9 +170,9 @@ const Login = (props) => {
                                             "Password must be at  least 4 characters...",
                                       }
                                  : {
-                                    state: "",
-                                    text: "Please enter your password..."
-                                 }
+                                      state: "",
+                                      text: "Please enter your password...",
+                                   }
                            }
                            type="password"
                         />

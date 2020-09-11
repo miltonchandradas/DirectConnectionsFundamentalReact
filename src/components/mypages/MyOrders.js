@@ -7,6 +7,7 @@ import { Table } from "fundamental-react/Table";
 import { MessageStrip } from "fundamental-react/MessageStrip";
 import { InfoLabel } from "fundamental-react/InfoLabel";
 import { Counter } from "fundamental-react/Counter";
+import { Link } from "fundamental-react/Link";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -20,13 +21,13 @@ const MyOrders = () => {
    const [myActivities, setMyActivities] = useState([]);
 
    const [defaultHeaders, setDefaultHeaders] = useState([
-      "Description",
-      "Initiated By",
-      "Start Date",
-      "Beneficiary Name",
-      "Provider Name",
-      "State",
-      "Rating",
+      <Link subtle>Description</Link>,
+      <Link subtle>Initiated By</Link>,
+      <Link subtle>Start Date</Link>,
+      <Link subtle>Beneficiary Name</Link>,
+      <Link subtle>Provider Name</Link>,
+      <Link subtle>State</Link>,
+      <Link subtle>Rating</Link>,
    ]);
    const [defaultData, setDefaultData] = useState([]);
 
@@ -53,7 +54,10 @@ const MyOrders = () => {
                            activity.SERVICEDESCRIPTION
                               ? activity.SERVICEDESCRIPTION.substring(0, 80) +
                                 "..."
-                              : activity.OPPORTUNITYDESCRIPTION + "...",
+                              : activity.OPPORTUNITYDESCRIPTION.substring(
+                                   0,
+                                   80
+                                ) + "...",
                            <InfoLabel color={6}>
                               {activity.INITIATEDBY}
                            </InfoLabel>,
@@ -65,7 +69,7 @@ const MyOrders = () => {
                               " " +
                               activity.PROVIDERLASTNAME,
                            <InfoLabel color={1}>{activity.STATE}</InfoLabel>,
-                           <Counter>{activity.RATING ? 5 : 5}</Counter>,
+                           <Counter>{activity.RATING}</Counter>,
                         ],
                      };
                   })

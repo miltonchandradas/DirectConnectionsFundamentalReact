@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
-import MyVolunteeringOpportunityItem from "./MyVolunteeringOpportunityItem";
+import ServiceItem from "./ServiceItem";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
-import OpportunityContext from "../../context/opportunity/opportunityContext";
+import ServiceContext from "../../context/service/serviceContext";
+
+import { Link } from "fundamental-react/Link";
+
+import { MessageStrip } from "fundamental-react/MessageStrip";
 
 import {
    Badge,
-   Button,
    Card,
    Text,
    FlexBox,
@@ -24,13 +27,18 @@ import "@ui5/webcomponents-icons/dist/icons/list.js";
 
 import "@ui5/webcomponents-icons/dist/icons/add-employee.js";
 
-const MyVolunteeringOpportunities = () => {
+const Services = () => {
    const authContext = useContext(AuthContext);
    const messageContext = useContext(MessageContext);
-   const opportunityContext = useContext(OpportunityContext);
+   const serviceContext = useContext(ServiceContext);
    const { isAuthenticated, user, getUser } = authContext;
    const { removeMessage } = messageContext;
-   const { opportunities, getOpportunities } = opportunityContext;
+   const { services, getServices } = serviceContext;
+
+   const marginStyle = {
+      marginTop: "20px",
+      display: "block",
+   };
 
    const handleHeaderClick = () => {
       console.log("Header was clicked...");
@@ -41,7 +49,7 @@ const MyVolunteeringOpportunities = () => {
          getUser();
       } else {
          removeMessage();
-         getOpportunities(user.ID, false);
+         getServices(user.ID, false);
       }
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,19 +59,24 @@ const MyVolunteeringOpportunities = () => {
       <section className="section-myopportunities">
          {user && (
             <h2>
-               Volunteering Opportunities - {user.FIRSTNAME} {user.LASTNAME}
+               Provided Services - {user.FIRSTNAME} {user.LASTNAME}
             </h2>
          )}
+
+<MessageStrip style={marginStyle} type="success">
+            Please find below all the services provided
+         </MessageStrip>
+         <Link href="/volunteeringopportunities">Click here to find out how you can help...</Link>
 
          <FlexBox
             justifyContent={FlexBoxJustifyContent.Center}
             wrap={FlexBoxWrap.Wrap}
          >
-            {opportunities &&
-               opportunities.map((opportunity) => (
-                  <MyVolunteeringOpportunityItem
-                     key={opportunity.ID}
-                     opportunity={opportunity}
+            {services &&
+               services.map((service) => (
+                  <ServiceItem
+                     key={service.ID}
+                     service={service}
                      user={user}
                   />
 
@@ -97,4 +110,4 @@ const MyVolunteeringOpportunities = () => {
    );
 };
 
-export default MyVolunteeringOpportunities;
+export default Services;

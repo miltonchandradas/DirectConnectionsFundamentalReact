@@ -21,14 +21,14 @@ const Header = (props) => {
             <Button
                option="emphasized"
                className="fr-button"
-               style={{ display: "block", margin: "20px" }}
+               // style={{ display: "block", margin: "20px" }}
                onClick={onRegisterHandler}
             >
                How can I help ?
             </Button>
             <Button
                className="fr-button"
-               style={{ display: "block", margin: "20px" }}
+               // style={{ display: "block", margin: "20px" }}
                onClick={onLearnMoreHandler}
             >
                Learn more...

@@ -37,14 +37,18 @@ const MyAccount = () => {
    const [selectedKey, setSelectedKey] = useState("0");
 
    const [defaultHeaders, setDefaultHeaders] = useState([
-      "Description",
-      "Start Date",
-      "State",
+      <Link subtle>Description</Link>,
+      <Link subtle>Start Date</Link>,
+      <Link subtle>State</Link>,
    ]);
    const [defaultData, setDefaultData] = useState([]);
 
    const marginStyle = {
       marginTop: "20px",
+   };
+
+   const isPast = (startDate) => {
+      return new Date(startDate) < new Date();
    };
 
    useEffect(() => {
@@ -57,7 +61,7 @@ const MyAccount = () => {
             await getMyServices(user.ID, true);
 
             if (defaultData.length < 1) {
-               console.log("My Services is now populated...");
+               console.log("My Services is now being populated...");
                await setDefaultData(
                   myServices.map((service) => {
                      return {

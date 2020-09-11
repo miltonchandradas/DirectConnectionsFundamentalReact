@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "fundamental-react/Table";
+import { Link } from "fundamental-react/Link";
 import { Menu } from "fundamental-react/Menu";
 import { Button } from "fundamental-react/Button";
 import { Popover } from "fundamental-react/Popover";
@@ -9,14 +10,19 @@ import { Checkbox } from "fundamental-react/Forms";
 const Opportunities = () => {
    return (
       <Table
+         style={{
+            marginTop: "10px",
+            border: "1px solid green",
+            tableLayout: "auto",
+         }}
          headers={[
             <Checkbox />,
-            "Avatar",
-            "email",
-            "First Name",
-            "Last Name",
-            "Date",
-            " ",
+            <Link subtle>Avatar</Link>,
+            <Link subtle>Email</Link>,
+            <Link subtle>First Name</Link>,
+            <Link subtle>Last Name</Link>,
+            <Link subtle>Date</Link>,
+            <Link subtle>More</Link>,
          ]}
          tableData={[
             {
@@ -27,14 +33,14 @@ const Opportunities = () => {
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     backgroundImageUrl="https://robohash.org/green?size=50x50"
+                     backgroundImageUrl="https://picsum.photos/id/1000/50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
-                     user.name@test.com
+                     milton@live.com
                   </a>,
-                  "First Name",
-                  "Last Name",
+                  "Milton",
+                  "Chandradas",
                   "01/26/17",
                   <Popover
                      body={
@@ -63,15 +69,15 @@ const Opportunities = () => {
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     backgroundImageUrl="https://robohash.org/brown?size=50x50"
+                     backgroundImageUrl="https://picsum.photos/id/1001/50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
-                     florence.garcia@qwerty.io
+                     rachel@live.com
                   </a>,
-                  "First Name",
-                  "Last Name",
-                  "01/26/17",
+                  "Rachel",
+                  "Clemens",
+                  "08/26/20",
                   <Popover
                      body={
                         <Menu>
@@ -99,15 +105,15 @@ const Opportunities = () => {
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     backgroundImageUrl="https://robohash.org/Q27.png?set=set1&size=50x50"
+                     backgroundImageUrl="https://picsum.photos/id/1002/50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
-                     mark.helper@qwerty.io
+                     gurudatt@live.com
                   </a>,
-                  "First Name",
-                  "Last Name",
-                  "01/26/17",
+                  "Gurudatt",
+                  "Kashyap",
+                  "09/01/19",
                   <Popover
                      body={
                         <Menu>
@@ -135,14 +141,14 @@ const Opportunities = () => {
                      onChange={function S() {}}
                   />,
                   <Avatar
-                     backgroundImageUrl="https://robohash.org/water?&size=50x50"
+                     backgroundImageUrl="https://picsum.photos/id/1003/50"
                      size="m"
                   />,
                   <a className="fd-has-font-weight-semi" href="#!">
-                     jenna@qwerty.io
+                     evan@live.com
                   </a>,
-                  "First Name",
-                  "Last Name",
+                  "Evan",
+                  "Schiele",
                   "01/26/17",
                   <Popover
                      body={

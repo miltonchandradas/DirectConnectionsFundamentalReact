@@ -28,7 +28,7 @@ const Register = (props) => {
 
    useEffect(() => {
       if (isAuthenticated) {
-         props.history.push("/mydashboard");
+         props.history.push("/myaccount");
       }
 
       if (error) {
@@ -195,9 +195,9 @@ const Register = (props) => {
                                          text: "Please enter a valid email...",
                                       }
                                  : {
-                                    state: "",
-                                    text: "Please enter your email..."
-                                 }
+                                      state: "",
+                                      text: "Please enter your email...",
+                                   }
                            }
                         />
                      </FormItem>
@@ -227,9 +227,9 @@ const Register = (props) => {
                                             "Password must be at  least 4 characters (AND) passwords must match...",
                                       }
                                  : {
-                                    state: "",
-                                    text: "Please enter your password..."
-                                 }
+                                      state: "",
+                                      text: "Please enter your password...",
+                                   }
                            }
                         />
                      </FormItem>
@@ -259,9 +259,9 @@ const Register = (props) => {
                                             "Password must be at  least 4 characters...",
                                       }
                                  : {
-                                    state: "",
-                                    text: "Please enter your password..."
-                                 }
+                                      state: "",
+                                      text: "Please enter your password...",
+                                   }
                            }
                         />
                      </FormItem>
