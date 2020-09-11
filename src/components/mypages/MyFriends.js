@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 
 import axios from "axios";
 
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
+import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
 
 import AddressMaps from "../maps/AddressMaps";
 

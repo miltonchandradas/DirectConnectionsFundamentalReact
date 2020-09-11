@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useContext } from "react";
-import { Dialog } from "fundamental-react/Dialog";
-import { Button } from "fundamental-react/Button";
+import { Dialog } from "fundamental-react/lib/Dialog";
+import { Button } from "fundamental-react/lib/Button";
 
-import { Badge,  Card, Text, Icon } from "@ui5/webcomponents-react";
+import { Badge, Card, Text, Icon } from "@ui5/webcomponents-react";
 import { spacing } from "@ui5/webcomponents-react-base";
 
 import "@ui5/webcomponents-icons/dist/icons/line-chart.js";
@@ -63,7 +63,7 @@ const ServiceItem = ({ service, user }) => {
             >
                Contact {service.PROVIDERFIRSTNAME}
             </Button>
-            
+
             <Badge
                style={{ padding: "5px" }}
             >{`Category:  ${service.CATEGORYNAME}`}</Badge>
@@ -81,7 +81,8 @@ const ServiceItem = ({ service, user }) => {
                <b>Service ID:</b> {service.ID}
             </p>
             <p>
-               Thank you for contacting. Please note that {service.PROVIDERFIRSTNAME} needs to approve your request.  
+               Thank you for contacting. Please note that{" "}
+               {service.PROVIDERFIRSTNAME} needs to approve your request.
                {service.PROVIDERFIRSTNAME} will get in touch with you shortly !!
             </p>
          </Dialog>

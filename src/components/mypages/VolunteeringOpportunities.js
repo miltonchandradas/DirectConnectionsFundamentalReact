@@ -5,9 +5,9 @@ import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 import OpportunityContext from "../../context/opportunity/opportunityContext";
 
-import { Link } from "fundamental-react/Link";
+import { Link } from "fundamental-react/lib/Link";
 
-import { MessageStrip } from "fundamental-react/MessageStrip";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
 
 import {
    Badge,
@@ -64,10 +64,12 @@ const VolunteeringOpportunities = () => {
             </h2>
          )}
 
-<MessageStrip style={marginStyle} type="success">
+         <MessageStrip style={marginStyle} type="success">
             Please find below all the volunteering opportunities
          </MessageStrip>
-         <Link href="/volunteeringopportunities">Click here to find out how you can help...</Link>
+         <Link href="/volunteeringopportunities">
+            Click here to find out how you can help...
+         </Link>
 
          <FlexBox
             justifyContent={FlexBoxJustifyContent.Center}

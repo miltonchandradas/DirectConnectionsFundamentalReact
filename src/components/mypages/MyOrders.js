@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext, Fragment } from "react";
 import axios from "axios";
 
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
-import { Panel } from "fundamental-react/Panel";
-import { Table } from "fundamental-react/Table";
-import { MessageStrip } from "fundamental-react/MessageStrip";
-import { InfoLabel } from "fundamental-react/InfoLabel";
-import { Counter } from "fundamental-react/Counter";
-import { Link } from "fundamental-react/Link";
+/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
+import { Panel } from "fundamental-react/lib/Panel"; */
+
+import { Container, Row, Column } from "fundamental-react";
+import { Table } from "fundamental-react/lib/Table";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
+import { InfoLabel } from "fundamental-react/lib/InfoLabel";
+import { Counter } from "fundamental-react/lib/Counter";
+import { Link } from "fundamental-react/lib/Link";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";

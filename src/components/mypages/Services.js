@@ -5,9 +5,9 @@ import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 import ServiceContext from "../../context/service/serviceContext";
 
-import { Link } from "fundamental-react/Link";
+import { Link } from "fundamental-react/lib/Link";
 
-import { MessageStrip } from "fundamental-react/MessageStrip";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
 
 import {
    Badge,
@@ -63,10 +63,12 @@ const Services = () => {
             </h2>
          )}
 
-<MessageStrip style={marginStyle} type="success">
+         <MessageStrip style={marginStyle} type="success">
             Please find below all the services provided
          </MessageStrip>
-         <Link href="/volunteeringopportunities">Click here to find out how you can help...</Link>
+         <Link href="/volunteeringopportunities">
+            Click here to find out how you can help...
+         </Link>
 
          <FlexBox
             justifyContent={FlexBoxJustifyContent.Center}
@@ -74,11 +76,7 @@ const Services = () => {
          >
             {services &&
                services.map((service) => (
-                  <ServiceItem
-                     key={service.ID}
-                     service={service}
-                     user={user}
-                  />
+                  <ServiceItem key={service.ID} service={service} user={user} />
 
                   /* let date = opportunity.STARTDATE.substring(0, 10);
                   return (

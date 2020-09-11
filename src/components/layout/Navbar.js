@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Shellbar } from "fundamental-react/Shellbar";
-import { Menu } from "fundamental-react/Menu";
+import { Shellbar } from "fundamental-react/lib/Shellbar";
+import { Menu } from "fundamental-react/lib/Menu";
 import logo from "../../resources/images/logo.jpg";
 import profilepic from "../../resources/images/milton.jpg";
 

@@ -1,10 +1,12 @@
 import React from "react";
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
+/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid"; */
+
+import { Container, Row, Column } from "fundamental-react";
 
 const Footer = () => {
    return (
       <footer>
-         <LayoutGrid cols={2} nogap>
+         <Container nogap>
             <ul className="footer-nav">
                <li>
                   <a href="#!">About us</a>
@@ -45,12 +47,15 @@ const Footer = () => {
                   </a>
                </li>
             </ul>
-         </LayoutGrid>
-         <LayoutGrid cols={1} nogap>
+         </Container>
+         <Container nogap>
             <div className="footer-copyright">
-               <p>Copyright &copy; 2020 by SAP Fundamental React v0.9.0.  All rights reserved.</p>
+               <p>
+                  Copyright &copy; 2020 by SAP Fundamental React v0.9.0. All
+                  rights reserved.
+               </p>
             </div>
-         </LayoutGrid>
+         </Container>
       </footer>
    );
 };

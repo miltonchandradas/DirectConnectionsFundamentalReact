@@ -2,11 +2,13 @@ import React, { useContext, useState, useEffect, Fragment } from "react";
 
 import axios from "axios";
 
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
-import { Panel } from "fundamental-react/Panel";
-import { Button } from "fundamental-react/Button";
-import { ComboboxInput } from "fundamental-react/ComboboxInput";
-import { Table } from "fundamental-react/Table";
+/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
+import { Panel } from "fundamental-react/lib/Panel"; */
+
+import { Container, Row, Column } from "fundamental-react";
+import { Button } from "fundamental-react/lib/Button";
+import { ComboboxInput } from "fundamental-react/lib/ComboboxInput";
+import { Table } from "fundamental-react/lib/Table";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -20,10 +22,10 @@ import {
    FormItem,
    FormInput,
    FormLegend,
-} from "fundamental-react/Forms";
-import { MessageStrip } from "fundamental-react/MessageStrip";
-import { Link } from "fundamental-react/Link";
-import { InfoLabel } from "fundamental-react/InfoLabel";
+} from "fundamental-react/lib/Forms";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
+import { Link } from "fundamental-react/lib/Link";
+import { InfoLabel } from "fundamental-react/lib/InfoLabel";
 
 const MyAccount = () => {
    const authContext = useContext(AuthContext);
@@ -124,10 +126,10 @@ const MyAccount = () => {
             </h2>
          )}
 
-         <LayoutGrid cols={4}>
-            <Panel>
+         <Container>
+            <Row>
                {user && (
-                  <Panel.Body>
+                  <Column>
                      <FormFieldset>
                         <FormItem>
                            <FormLabel htmlFor="ex01">Name:</FormLabel>
@@ -186,12 +188,12 @@ const MyAccount = () => {
                            </MessageStrip>
                         )}
                      </FormFieldset>
-                  </Panel.Body>
+                  </Column>
                )}
-            </Panel>
-            <Panel colSpan={3}>
+            </Row>
+            <Row>
                {user && (
-                  <Panel.Body>
+                  <Column>
                      <FormFieldset>
                         <FormLegend>Services Provided</FormLegend>
                         <FormItem>
@@ -222,10 +224,10 @@ const MyAccount = () => {
                            )}
                         </FormItem>
                      </FormFieldset>
-                  </Panel.Body>
+                  </Column>
                )}
-            </Panel>
-         </LayoutGrid>
+            </Row>
+         </Container>
       </section>
    );
 };

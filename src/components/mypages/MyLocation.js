@@ -1,8 +1,9 @@
 import React, { useEffect, useContext } from "react";
 
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
-import { Panel } from "fundamental-react/Panel";
+/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
+import { Panel } from "fundamental-react/lib/Panel"; */
 
+import { Container, Row, Column } from "fundamental-react";
 import AddressMap from "../maps/AddressMap";
 
 import AuthContext from "../../context/auth/authContext";
@@ -15,7 +16,6 @@ const MyLocation = () => {
    const { removeMessage } = messageContext;
 
    useEffect(() => {
-      
       if (!user) {
          getUser();
       } else {
@@ -32,17 +32,17 @@ const MyLocation = () => {
                My Location - {user.FIRSTNAME} {user.LASTNAME}
             </h2>
          )}
-         <LayoutGrid cols={1}>
-         <Panel className="fr-panel">
-            {user && (
-               <AddressMap
-                  latitude={user.LATITUDE}
-                  longitude={user.LONGITUDE}
-                  address={user.FORMATTEDADDRESS}
-               />
-            )}
-            </Panel>
-         </LayoutGrid>
+         <Container>
+            <Row className="fr-panel">
+               {user && (
+                  <AddressMap
+                     latitude={user.LATITUDE}
+                     longitude={user.LONGITUDE}
+                     address={user.FORMATTEDADDRESS}
+                  />
+               )}
+            </Row>
+         </Container>
       </section>
    );
 };

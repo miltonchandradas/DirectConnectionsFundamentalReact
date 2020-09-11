@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useContext } from "react";
-import { Dialog } from "fundamental-react/Dialog";
-import { Button } from "fundamental-react/Button";
+import { Dialog } from "fundamental-react/lib/Dialog";
+import { Button } from "fundamental-react/lib/Button";
 
 import { Badge, Card, Text, Icon } from "@ui5/webcomponents-react";
 import { spacing } from "@ui5/webcomponents-react-base";
@@ -63,7 +63,7 @@ const VolunteeringOpportunityItem = ({ opportunity, user }) => {
             >
                Click to volunteer !
             </Button>
-            
+
             <Badge
                style={{ padding: "5px" }}
             >{`Category:  ${opportunity.CATEGORYNAME}`}</Badge>

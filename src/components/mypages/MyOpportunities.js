@@ -8,9 +8,9 @@ import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 import OpportunityContext from "../../context/opportunity/opportunityContext";
 
-import { Link } from "fundamental-react/Link";
-import { Checkbox } from "fundamental-react/Forms";
-import { MessageStrip } from "fundamental-react/MessageStrip";
+import { Link } from "fundamental-react/lib/Link";
+import { Checkbox } from "fundamental-react/lib/Forms";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
 
 import {
    Badge,
@@ -93,13 +93,13 @@ const MyOpportunities = () => {
 
       let payload = {
          beneficiaryId: id,
-         categoryId: Math.floor(Math.random()*5) + 1,
+         categoryId: Math.floor(Math.random() * 5) + 1,
          description: lorem.generateSentences(2),
          startDate: randomStartDate,
          endDate: randomStartDate,
-         estimatedHours: Math.floor(Math.random()*5) + 1,
+         estimatedHours: Math.floor(Math.random() * 5) + 1,
          additionalComments: lorem.generateSentences(2),
-         difficultyLevel: Math.floor(Math.random()*5) + 1,
+         difficultyLevel: Math.floor(Math.random() * 5) + 1,
       };
 
       try {

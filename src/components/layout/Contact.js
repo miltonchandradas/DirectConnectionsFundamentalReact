@@ -6,10 +6,10 @@ import {
    FormLabel,
    FormTextarea,
    Checkbox,
-} from "fundamental-react/Forms";
-import { Button } from "fundamental-react/Button";
+} from "fundamental-react/lib/Forms";
+import { Button } from "fundamental-react/lib/Button";
 
-import { ComboboxInput } from "fundamental-react/ComboboxInput";
+import { ComboboxInput } from "fundamental-react/lib/ComboboxInput";
 
 const Contact = () => {
    return (

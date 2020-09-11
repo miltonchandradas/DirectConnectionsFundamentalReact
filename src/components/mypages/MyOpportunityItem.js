@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useContext } from "react";
-import { Dialog } from "fundamental-react/Dialog";
-import { Table } from "fundamental-react/Table";
-import { Link } from "fundamental-react/Link";
-import { Button } from "fundamental-react/Button";
-import { InfoLabel } from "fundamental-react/InfoLabel";
-import { InlineHelp } from "fundamental-react/InlineHelp";
+import { Dialog } from "fundamental-react/lib/Dialog";
+import { Table } from "fundamental-react/lib/Table";
+import { Link } from "fundamental-react/lib/Link";
+import { Button } from "fundamental-react/lib/Button";
+import { InfoLabel } from "fundamental-react/lib/InfoLabel";
+import { InlineHelp } from "fundamental-react/lib/InlineHelp";
 
 import axios from "axios";
 

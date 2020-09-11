@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MessageStrip } from "fundamental-react/MessageStrip";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
 import MessageContext from "../../context/message/messageContext";
 
 const Message = () => {
@@ -9,10 +9,16 @@ const Message = () => {
 
    return (
       <div className="fr-messagestrip">
-         {message.visible ? <MessageStrip dismissible={message.isDismissible} link="#" linkText={message.linkText} type={message.type} >
-            {message.msg}
-         </MessageStrip> : null}
-         
+         {message.visible ? (
+            <MessageStrip
+               dismissible={message.isDismissible}
+               link="#"
+               linkText={message.linkText}
+               type={message.type}
+            >
+               {message.msg}
+            </MessageStrip>
+         ) : null}
       </div>
    );
 };

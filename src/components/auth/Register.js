@@ -4,11 +4,13 @@ import {
    FormInput,
    FormItem,
    FormLabel,
-} from "fundamental-react/Forms";
+} from "fundamental-react/lib/Forms";
+/* 
+import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
+import { Panel } from "fundamental-react/lib/Panel"; */
 
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
-import { Panel } from "fundamental-react/Panel";
-import { Button } from "fundamental-react/Button";
+import { Container, Row, Column } from "fundamental-react";
+import { Button } from "fundamental-react/lib/Button";
 import FacebookLogin from "react-facebook-login";
 
 import AuthContext from "../../context/auth/authContext";
@@ -137,9 +139,9 @@ const Register = (props) => {
    return (
       <section className="section-register register">
          <h2>Register</h2>
-         <LayoutGrid cols={2}>
-            <Panel className="fr-panel">
-               <Panel.Body>
+         <Container>
+            <Row className="fr-panel">
+               <Column>
                   <h1>
                      Account <span className="h1 h1-span">Register</span>
                   </h1>
@@ -282,10 +284,10 @@ const Register = (props) => {
                   <Button className="fr-button" onClick={onSubmitHandler}>
                      Register
                   </Button>
-               </Panel.Body>
-            </Panel>
-            <Panel className="fr-panel">
-               <Panel.Body>
+               </Column>
+            </Row>
+            <Row className="fr-panel">
+               <Column>
                   <h1>
                      Login with <span className="h1 h1-span">Facebook</span>
                   </h1>
@@ -297,9 +299,9 @@ const Register = (props) => {
                         callback={responseFacebook}
                      />
                   </div>
-               </Panel.Body>
-            </Panel>
-         </LayoutGrid>
+               </Column>
+            </Row>
+         </Container>
       </section>
    );
 };

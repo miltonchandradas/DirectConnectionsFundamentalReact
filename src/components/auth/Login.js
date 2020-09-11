@@ -5,10 +5,12 @@ import {
    FormInput,
    FormItem,
    FormLabel,
-} from "fundamental-react/Forms";
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
-import { Panel } from "fundamental-react/Panel";
-import { Button } from "fundamental-react/Button";
+} from "fundamental-react/lib/Forms";
+/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
+import { Panel } from "fundamental-react/lib/Panel"; */
+import { Button } from "fundamental-react/lib/Button";
+
+import { Container, Row, Column } from "fundamental-react";
 
 import FacebookLogin from "react-facebook-login";
 
@@ -110,9 +112,9 @@ const Login = (props) => {
       <section className="section-login login">
          <h2>Login</h2>
 
-         <LayoutGrid cols={2}>
-            <Panel className="fr-panel">
-               <Panel.Body>
+         <Container>
+            <Row>
+               <Column>
                   <h1>
                      Account <span className="h1 h1-span">Login</span>
                   </h1>
@@ -182,10 +184,10 @@ const Login = (props) => {
                   <Button className="fr-button" onClick={onSubmitHandler}>
                      Login
                   </Button>
-               </Panel.Body>
-            </Panel>
-            <Panel className="fr-panel">
-               <Panel.Body>
+               </Column>
+            </Row>
+            <Row className="fr-panel">
+               <Column>
                   <h1>
                      Login with <span className="h1 h1-span">Facebook</span>
                   </h1>
@@ -197,9 +199,9 @@ const Login = (props) => {
                         callback={responseFacebook}
                      />
                   </div>
-               </Panel.Body>
-            </Panel>
-         </LayoutGrid>
+               </Column>
+            </Row>
+         </Container>
       </section>
    );
 };

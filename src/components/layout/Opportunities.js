@@ -1,11 +1,11 @@
 import React from "react";
-import { Table } from "fundamental-react/Table";
-import { Link } from "fundamental-react/Link";
-import { Menu } from "fundamental-react/Menu";
-import { Button } from "fundamental-react/Button";
-import { Popover } from "fundamental-react/Popover";
-import { Avatar } from "fundamental-react/Avatar";
-import { Checkbox } from "fundamental-react/Forms";
+import { Table } from "fundamental-react/lib/Table";
+import { Link } from "fundamental-react/lib/Link";
+import { Menu } from "fundamental-react/lib/Menu";
+import { Button } from "fundamental-react/lib/Button";
+import { Popover } from "fundamental-react/lib/Popover";
+import { Avatar } from "fundamental-react/lib/Avatar";
+import { Checkbox } from "fundamental-react/lib/Forms";
 
 const Opportunities = () => {
    return (

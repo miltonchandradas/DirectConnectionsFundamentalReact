@@ -3,10 +3,10 @@ import { LoremIpsum } from "lorem-ipsum";
 
 import axios from "axios";
 
-import { Link } from "fundamental-react/Link";
+import { Link } from "fundamental-react/lib/Link";
 
-import { MessageStrip } from "fundamental-react/MessageStrip";
-import { Checkbox } from "fundamental-react/Forms";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
+import { Checkbox } from "fundamental-react/lib/Forms";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";

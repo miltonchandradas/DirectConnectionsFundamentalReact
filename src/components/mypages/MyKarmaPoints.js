@@ -1,8 +1,9 @@
 import React, { useEffect, useContext } from "react";
 
-import { LayoutGrid } from "fundamental-react/LayoutGrid";
-import { Panel } from "fundamental-react/Panel";
+/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
+import { Panel } from "fundamental-react/lib/Panel"; */
 
+import { Container, Row, Column } from "fundamental-react";
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 
@@ -25,9 +26,9 @@ const MyKarmaPoints = () => {
    return (
       <section className="section-mylocation">
          <h2>My Karma Points</h2>
-         <LayoutGrid cols={1}>
-            <Panel className="fr-panel"></Panel>
-         </LayoutGrid>
+         <Container>
+            <Row className="fr-panel"></Row>
+         </Container>
       </section>
    );
 };

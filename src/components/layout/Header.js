@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import { Button } from "fundamental-react/Button";
+import { Button } from "fundamental-react/lib/Button";
 
 const Header = (props) => {
    const onLearnMoreHandler = () => {

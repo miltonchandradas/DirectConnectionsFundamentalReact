@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Tab, TabGroup } from "fundamental-react/Tabs";
-import { MessageStrip } from "fundamental-react/MessageStrip";
-import { Link } from "fundamental-react/Link";
+import { Tab, TabGroup } from "fundamental-react/lib/Tabs";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
+import { Link } from "fundamental-react/lib/Link";
 
 import Opportunities from "./Opportunities";
 

@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { Table } from "fundamental-react/Table";
-import { Checkbox } from "fundamental-react/Forms";
-import { Link } from "fundamental-react/Link";
-import { FormLabel } from "fundamental-react/Forms";
+import { Table } from "fundamental-react/lib/Table";
+import { Checkbox } from "fundamental-react/lib/Forms";
+import { Link } from "fundamental-react/lib/Link";
+import { FormLabel } from "fundamental-react/lib/Forms";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 import ProductContext from "../../context/product/productContext";
 
-import { MessageStrip } from "fundamental-react/MessageStrip";
+import { MessageStrip } from "fundamental-react/lib/MessageStrip";
 
 import {
    Avatar,
