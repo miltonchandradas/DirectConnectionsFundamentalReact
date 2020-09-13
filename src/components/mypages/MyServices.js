@@ -2,11 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import { LoremIpsum } from "lorem-ipsum";
 
 import axios from "axios";
+import { isMobile } from "react-device-detect";
 
-import { Link } from "fundamental-react/lib/Link";
-
-import { MessageStrip } from "fundamental-react/lib/MessageStrip";
-import { Checkbox } from "fundamental-react/lib/Forms";
+import { MessageStrip, Checkbox } from "fundamental-react";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -48,11 +46,13 @@ const MyServices = () => {
    };
 
    const formatDate = (startDate) => {
-      let myDate = new Date(startDate);
+      /* let myDate = new Date(startDate);
 
       return `${myDate.getUTCFullYear()}-${
          myDate.getUTCMonth() + 1
-      }-${myDate.getUTCDate()}`;
+      }-${myDate.getUTCDate()}`; */
+
+      return startDate.substring(0, 10);
    };
 
    const handleShowAll = () => {
@@ -168,7 +168,9 @@ const MyServices = () => {
                      return (
                         <Card
                            key={service.ID}
-                           avatar={<Icon name={"add-employee"} />}
+                           avatar={
+                              isMobile ? null : <Icon name={"add-employee"} />
+                           }
                            heading={`${service.PROVIDERFIRSTNAME} ${service.PROVIDERLASTNAME}`}
                            subheading={`Difficulty: ${service.DIFFICULTYLEVEL}`}
                            status={service.STATE}
@@ -178,7 +180,6 @@ const MyServices = () => {
                            }}
                            headerInteractive
                            onHeaderClick={"handleHeaderClick"}
-                           key={service.ID}
                         >
                            <Badge
                               style={{

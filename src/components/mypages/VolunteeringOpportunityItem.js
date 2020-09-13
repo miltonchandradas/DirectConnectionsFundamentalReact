@@ -1,14 +1,12 @@
 import React, { Fragment, useState, useContext } from "react";
-import { Dialog } from "fundamental-react/lib/Dialog";
-import { Button } from "fundamental-react/lib/Button";
+import { isMobile } from "react-device-detect";
+
+import { Dialog, Button } from "fundamental-react";
+
 
 import { Badge, Card, Text, Icon } from "@ui5/webcomponents-react";
 import { spacing } from "@ui5/webcomponents-react-base";
 
-import "@ui5/webcomponents-icons/dist/icons/line-chart.js";
-import "@ui5/webcomponents-icons/dist/icons/horizontal-bar-chart.js";
-import "@ui5/webcomponents-icons/dist/icons/table-view.js";
-import "@ui5/webcomponents-icons/dist/icons/list.js";
 
 import "@ui5/webcomponents-icons/dist/icons/add-employee.js";
 
@@ -45,9 +43,11 @@ const VolunteeringOpportunityItem = ({ opportunity, user }) => {
       <Fragment>
          <Card
             key={opportunity.ID}
-            avatar={<Icon name={"add-employee"} />}
+            avatar={isMobile ? null : <Icon name={"add-employee"} />}
             heading={`${opportunity.BENEFICIARYFIRSTNAME} ${opportunity.BENEFICIARYLASTNAME}`}
-            subheading={`Start Date: ${date}`}
+            subheading={
+               isMobile ? `${date}` : `Start Date: ${date}`
+            }
             status={opportunity.STATE}
             className="ui5card"
             style={{ ...spacing.sapUiContentPadding }}
@@ -59,13 +59,13 @@ const VolunteeringOpportunityItem = ({ opportunity, user }) => {
                compact
                onClick={handleVolunteeringOpportunity}
                disabled={opportunity.STATE === "subscribed"}
-               style={{ margin: "10px", display: "inline-block" }}
+               style={{ margin: "10px", display: "block" }}
             >
                Click to volunteer !
             </Button>
 
             <Badge
-               style={{ padding: "5px" }}
+               style={{ margin: "10px", padding: "5px" }}
             >{`Category:  ${opportunity.CATEGORYNAME}`}</Badge>
             <Text style={spacing.sapUiContentPadding}>
                {opportunity.DESCRIPTION}

@@ -1,11 +1,14 @@
 import React from "react";
 
-/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
-import { Panel } from "fundamental-react/lib/Panel"; */
+import {
+   Container,
+   Row,
+   Column,
+   InfoLabel,
+   Button,
+   LayoutPanel,
+} from "fundamental-react";
 
-import { Container, Row, Column } from "fundamental-react";
-import { InfoLabel } from "fundamental-react/lib/InfoLabel";
-import { Button } from "fundamental-react/lib/Button";
 import howitworks from "../../resources/images/howitworks.jpg";
 
 const Howitworks = () => {
@@ -13,38 +16,62 @@ const Howitworks = () => {
       <section className="section-howitworks">
          <h2>How it works ?</h2>
 
-         <Container cols={2}>
+         <Container>
             <Row className="fr-panel">
-               <Column>
-                  <img src={howitworks} alt="" />
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 6,
+                     xLargeScreen: 6,
+                  }}
+               >
+                  <LayoutPanel style={{ height: "100%" }}>
+                     <LayoutPanel.Body>
+                        <img src={howitworks} alt="" />
+                     </LayoutPanel.Body>
+                  </LayoutPanel>
                </Column>
-            </Row>
-            <Row className="fr-panel">
-               <Column>
-                  <InfoLabel color={6} numeric>
-                     1
-                  </InfoLabel>
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Nam, repellendus.
-                  </p>
-                  <InfoLabel color={6} numeric>
-                     2
-                  </InfoLabel>
-                  <p>
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Maxime, repudiandae?
-                  </p>
-                  <InfoLabel color={6} numeric>
-                     3
-                  </InfoLabel>
-                  <p>
-                     Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                     Unde totam velit minima, culpa corrupti aut.
-                  </p>
-                  <Button option="emphasized" className="fr-button">
-                     Register for a new account !
-                  </Button>
+
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 6,
+                     xLargeScreen: 6,
+                  }}
+               >
+                  <LayoutPanel style={{ height: "100%" }}>
+                     <LayoutPanel.Body>
+                        <div>
+                           <InfoLabel color={6} numeric>
+                              1
+                           </InfoLabel>
+                           <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Nam, repellendus.
+                           </p>
+                           <InfoLabel color={6} numeric>
+                              2
+                           </InfoLabel>
+                           <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Maxime, repudiandae?
+                           </p>
+                           <InfoLabel color={6} numeric>
+                              3
+                           </InfoLabel>
+                           <p>
+                              Lorem ipsum, dolor sit amet consectetur
+                              adipisicing elit. Unde totam velit minima, culpa
+                              corrupti aut.
+                           </p>
+                           <Button option="emphasized" className="fr-button">
+                              Register for a new account !
+                           </Button>
+                        </div>
+                     </LayoutPanel.Body>
+                  </LayoutPanel>
                </Column>
             </Row>
          </Container>

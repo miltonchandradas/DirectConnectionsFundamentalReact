@@ -19,8 +19,7 @@ const Opportunities = () => {
             <Checkbox />,
             <Link subtle>Avatar</Link>,
             <Link subtle>Email</Link>,
-            <Link subtle>First Name</Link>,
-            <Link subtle>Last Name</Link>,
+            <Link subtle>Name</Link>,
             <Link subtle>Date</Link>,
             <Link subtle>More</Link>,
          ]}
@@ -39,8 +38,7 @@ const Opportunities = () => {
                   <a className="fd-has-font-weight-semi" href="#!">
                      milton@live.com
                   </a>,
-                  "Milton",
-                  "Chandradas",
+                  "Milton Chandradas",
                   "01/26/17",
                   <Popover
                      body={
@@ -75,8 +73,7 @@ const Opportunities = () => {
                   <a className="fd-has-font-weight-semi" href="#!">
                      rachel@live.com
                   </a>,
-                  "Rachel",
-                  "Clemens",
+                  "Rachel Clemens",
                   "08/26/20",
                   <Popover
                      body={
@@ -111,8 +108,7 @@ const Opportunities = () => {
                   <a className="fd-has-font-weight-semi" href="#!">
                      gurudatt@live.com
                   </a>,
-                  "Gurudatt",
-                  "Kashyap",
+                  "Gurudatt Kashyap",
                   "09/01/19",
                   <Popover
                      body={
@@ -147,8 +143,7 @@ const Opportunities = () => {
                   <a className="fd-has-font-weight-semi" href="#!">
                      evan@live.com
                   </a>,
-                  "Evan",
-                  "Schiele",
+                  "Evan Schiele",
                   "01/26/17",
                   <Popover
                      body={

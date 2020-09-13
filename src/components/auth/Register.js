@@ -1,16 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import {
    FormGroup,
    FormInput,
    FormItem,
    FormLabel,
-} from "fundamental-react/lib/Forms";
-/* 
-import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
-import { Panel } from "fundamental-react/lib/Panel"; */
+   Container,
+   Row,
+   Column,
+   Button,
+   LayoutPanel,
+} from "fundamental-react";
 
-import { Container, Row, Column } from "fundamental-react";
-import { Button } from "fundamental-react/lib/Button";
 import FacebookLogin from "react-facebook-login";
 
 import AuthContext from "../../context/auth/authContext";
@@ -141,164 +141,188 @@ const Register = (props) => {
          <h2>Register</h2>
          <Container>
             <Row className="fr-panel">
-               <Column>
-                  <h1>
-                     Account <span className="h1 h1-span">Register</span>
-                  </h1>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-1" required>
-                           First Name
-                        </FormLabel>
-                        <FormInput
-                           id="input-1"
-                           name="firstName"
-                           onChange={onChangeHandler}
-                           placeholder="First Name"
-                           required
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-2" required>
-                           Last Name
-                        </FormLabel>
-                        <FormInput
-                           id="input-2"
-                           name="lastName"
-                           onChange={onChangeHandler}
-                           placeholder="Last Name"
-                           required
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-3" required>
-                           Email
-                        </FormLabel>
-                        <FormInput
-                           id="input-3"
-                           name="email"
-                           onChange={onChangeHandler}
-                           placeholder="Email"
-                           type="email"
-                           required
-                           validationState={
-                              !isNew
-                                 ? isEmailValid
-                                    ? {
-                                         state: "success",
-                                         text: "The email is valid...",
-                                      }
-                                    : {
-                                         state: "",
-                                         text: "Please enter a valid email...",
-                                      }
-                                 : {
-                                      state: "",
-                                      text: "Please enter your email...",
-                                   }
-                           }
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-4" required>
-                           Password
-                        </FormLabel>
-                        <FormInput
-                           id="input-4"
-                           name="password"
-                           onChange={onChangeHandler}
-                           placeholder="Password"
-                           type="password"
-                           required
-                           validationState={
-                              !isNew
-                                 ? isPasswordValid
-                                    ? {
-                                         state: "success",
-                                         text: "The password is valid...",
-                                      }
-                                    : {
-                                         state: "",
-                                         text:
-                                            "Password must be at  least 4 characters (AND) passwords must match...",
-                                      }
-                                 : {
-                                      state: "",
-                                      text: "Please enter your password...",
-                                   }
-                           }
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-5" required>
-                           Confirm Password
-                        </FormLabel>
-                        <FormInput
-                           id="input-5"
-                           name="confirmPassword"
-                           onChange={onChangeHandler}
-                           placeholder="Confirm Password"
-                           type="password"
-                           required
-                           validationState={
-                              !isNew
-                                 ? isPasswordValid
-                                    ? {
-                                         state: "success",
-                                         text: "The password is valid...",
-                                      }
-                                    : {
-                                         state: "",
-                                         text:
-                                            "Password must be at  least 4 characters...",
-                                      }
-                                 : {
-                                      state: "",
-                                      text: "Please enter your password...",
-                                   }
-                           }
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-4" required>
-                           Address
-                        </FormLabel>
-                        <FormInput
-                           id="input-6"
-                           name="address"
-                           placeholder="Address"
-                           onChange={onChangeHandler}
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <Button className="fr-button" onClick={onSubmitHandler}>
-                     Register
-                  </Button>
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 6,
+                     xLargeScreen: 6,
+                  }}
+               >
+                  <LayoutPanel style={{ height: "100%" }}>
+                     <LayoutPanel.Body>
+                        <h1>
+                           Account <span className="h1 h1-span">Register</span>
+                        </h1>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-1" required>
+                                 First Name
+                              </FormLabel>
+                              <FormInput
+                                 id="input-1"
+                                 name="firstName"
+                                 onChange={onChangeHandler}
+                                 placeholder="First Name"
+                                 required
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-2" required>
+                                 Last Name
+                              </FormLabel>
+                              <FormInput
+                                 id="input-2"
+                                 name="lastName"
+                                 onChange={onChangeHandler}
+                                 placeholder="Last Name"
+                                 required
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-3" required>
+                                 Email
+                              </FormLabel>
+                              <FormInput
+                                 id="input-3"
+                                 name="email"
+                                 onChange={onChangeHandler}
+                                 placeholder="Email"
+                                 type="email"
+                                 required
+                                 validationState={
+                                    !isNew
+                                       ? isEmailValid
+                                          ? {
+                                               state: "success",
+                                               text: "The email is valid...",
+                                            }
+                                          : {
+                                               state: "",
+                                               text:
+                                                  "Please enter a valid email...",
+                                            }
+                                       : {
+                                            state: "",
+                                            text: "Please enter your email...",
+                                         }
+                                 }
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-4" required>
+                                 Password
+                              </FormLabel>
+                              <FormInput
+                                 id="input-4"
+                                 name="password"
+                                 onChange={onChangeHandler}
+                                 placeholder="Password"
+                                 type="password"
+                                 required
+                                 validationState={
+                                    !isNew
+                                       ? isPasswordValid
+                                          ? {
+                                               state: "success",
+                                               text: "The password is valid...",
+                                            }
+                                          : {
+                                               state: "",
+                                               text:
+                                                  "Password must be at  least 4 characters (AND) passwords must match...",
+                                            }
+                                       : {
+                                            state: "",
+                                            text:
+                                               "Please enter your password...",
+                                         }
+                                 }
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-5" required>
+                                 Confirm Password
+                              </FormLabel>
+                              <FormInput
+                                 id="input-5"
+                                 name="confirmPassword"
+                                 onChange={onChangeHandler}
+                                 placeholder="Confirm Password"
+                                 type="password"
+                                 required
+                                 validationState={
+                                    !isNew
+                                       ? isPasswordValid
+                                          ? {
+                                               state: "success",
+                                               text: "The password is valid...",
+                                            }
+                                          : {
+                                               state: "",
+                                               text:
+                                                  "Password must be at  least 4 characters...",
+                                            }
+                                       : {
+                                            state: "",
+                                            text:
+                                               "Please enter your password...",
+                                         }
+                                 }
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-4" required>
+                                 Address
+                              </FormLabel>
+                              <FormInput
+                                 id="input-6"
+                                 name="address"
+                                 placeholder="Address"
+                                 onChange={onChangeHandler}
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <Button className="fr-button" onClick={onSubmitHandler}>
+                           Register
+                        </Button>
+                     </LayoutPanel.Body>
+                  </LayoutPanel>
                </Column>
-            </Row>
-            <Row className="fr-panel">
-               <Column>
-                  <h1>
-                     Login with <span className="h1 h1-span">Facebook</span>
-                  </h1>
-                  <div className="fb-container">
-                     <FacebookLogin
-                        appId="716272092446596"
-                        autoLoad={false}
-                        fields="name,email,address,picture"
-                        callback={responseFacebook}
-                     />
-                  </div>
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 6,
+                     xLargeScreen: 6,
+                  }}
+               >
+                  <LayoutPanel style={{ height: "100%" }}>
+                     <LayoutPanel.Body>
+                        <h1>
+                           Login with{" "}
+                           <span className="h1 h1-span">Facebook</span>
+                        </h1>
+                        <div className="fb-container">
+                           <FacebookLogin
+                              appId="716272092446596"
+                              autoLoad={false}
+                              fields="name,email,picture"
+                              callback={responseFacebook}
+                           />
+                        </div>
+                     </LayoutPanel.Body>
+                  </LayoutPanel>
                </Column>
             </Row>
          </Container>

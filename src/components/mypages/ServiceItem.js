@@ -1,14 +1,15 @@
 import React, { Fragment, useState, useContext } from "react";
-import { Dialog } from "fundamental-react/lib/Dialog";
-import { Button } from "fundamental-react/lib/Button";
+import { isMobile } from "react-device-detect";
+
+import { Dialog, Button } from "fundamental-react";
 
 import { Badge, Card, Text, Icon } from "@ui5/webcomponents-react";
 import { spacing } from "@ui5/webcomponents-react-base";
 
-import "@ui5/webcomponents-icons/dist/icons/line-chart.js";
+/* import "@ui5/webcomponents-icons/dist/icons/line-chart.js";
 import "@ui5/webcomponents-icons/dist/icons/horizontal-bar-chart.js";
 import "@ui5/webcomponents-icons/dist/icons/table-view.js";
-import "@ui5/webcomponents-icons/dist/icons/list.js";
+import "@ui5/webcomponents-icons/dist/icons/list.js"; */
 
 import "@ui5/webcomponents-icons/dist/icons/add-employee.js";
 
@@ -30,13 +31,7 @@ const ServiceItem = ({ service, user }) => {
       console.log("Service ID: ", service.ID);
       console.log("Button was clicked...");
 
-      // subscribeService(user, service);
-
       setShowDialog(true);
-
-      // service.STATE = "subscribed";
-
-      // setIsSubscribed(true);
    };
 
    let date = service.STARTDATE.substring(0, 10);
@@ -45,9 +40,11 @@ const ServiceItem = ({ service, user }) => {
       <Fragment>
          <Card
             key={service.ID}
-            avatar={<Icon name={"add-employee"} />}
+            avatar={isMobile ? null : <Icon name={"add-employee"} />}
             heading={`${service.PROVIDERFIRSTNAME} ${service.PROVIDERLASTNAME}`}
-            subheading={`Start Date: ${date}`}
+            subheading={
+               isMobile ? `${date}` : `Start Date: ${date}`
+            }
             status={service.STATE}
             className="ui5card"
             style={{ ...spacing.sapUiContentPadding }}
@@ -59,13 +56,13 @@ const ServiceItem = ({ service, user }) => {
                compact
                onClick={handleService}
                disabled={service.STATE === "subscribed"}
-               style={{ margin: "10px", display: "inline-block" }}
+               style={{ margin: "10px", display: "block" }}
             >
                Contact {service.PROVIDERFIRSTNAME}
             </Button>
 
             <Badge
-               style={{ padding: "5px" }}
+               style={{ margin: "10px", padding: "5px" }}
             >{`Category:  ${service.CATEGORYNAME}`}</Badge>
             <Text style={spacing.sapUiContentPadding}>
                {service.DESCRIPTION}

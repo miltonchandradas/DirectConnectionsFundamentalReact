@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Shellbar } from "fundamental-react/lib/Shellbar";
-import { Menu } from "fundamental-react/lib/Menu";
+
+import { Shellbar, Menu } from "fundamental-react";
+
 import logo from "../../resources/images/logo.jpg";
 import profilepic from "../../resources/images/milton.jpg";
 
@@ -422,7 +423,6 @@ const Navbar = (props) => {
                   },
                ],
             }}
-            subtitle="Earn your karma credits today..."
          />
       </div>
    );

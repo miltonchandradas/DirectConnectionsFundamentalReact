@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useContext, Fragment } from "react";
+
 import axios from "axios";
+import { isMobile } from "react-device-detect";
 
-/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
-import { Panel } from "fundamental-react/lib/Panel"; */
-
-import { Container, Row, Column } from "fundamental-react";
-import { Table } from "fundamental-react/lib/Table";
-import { MessageStrip } from "fundamental-react/lib/MessageStrip";
-import { InfoLabel } from "fundamental-react/lib/InfoLabel";
-import { Counter } from "fundamental-react/lib/Counter";
-import { Link } from "fundamental-react/lib/Link";
+import {
+   Table,
+   MessageStrip,
+   InfoLabel,
+   Counter,
+   Link,
+   LayoutPanel,
+} from "fundamental-react";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
@@ -22,15 +23,18 @@ const MyOrders = () => {
 
    const [myActivities, setMyActivities] = useState([]);
 
-   const [defaultHeaders, setDefaultHeaders] = useState([
-      <Link subtle>Description</Link>,
-      <Link subtle>Initiated By</Link>,
-      <Link subtle>Start Date</Link>,
-      <Link subtle>Beneficiary Name</Link>,
-      <Link subtle>Provider Name</Link>,
-      <Link subtle>State</Link>,
-      <Link subtle>Rating</Link>,
-   ]);
+   const defaultHeaders = isMobile
+      ? [<Link subtle>Activity Info</Link>]
+      : [
+           <Link subtle>Description</Link>,
+           <Link subtle>Initiated By</Link>,
+           <Link subtle>Start Date</Link>,
+           <Link subtle>Beneficiary Name</Link>,
+           <Link subtle>Provider Name</Link>,
+           <Link subtle>State</Link>,
+           <Link subtle>Rating</Link>,
+        ];
+
    const [defaultData, setDefaultData] = useState([]);
 
    const marginStyle = {
@@ -51,29 +55,75 @@ const MyOrders = () => {
                console.log("My Activities is now populated...");
                await setDefaultData(
                   myActivities.map((activity) => {
-                     return {
-                        rowData: [
-                           activity.SERVICEDESCRIPTION
-                              ? activity.SERVICEDESCRIPTION.substring(0, 80) +
-                                "..."
-                              : activity.OPPORTUNITYDESCRIPTION.substring(
-                                   0,
-                                   80
-                                ) + "...",
-                           <InfoLabel color={6}>
-                              {activity.INITIATEDBY}
-                           </InfoLabel>,
-                           formatDate(activity.ACTIVITYDATE),
-                           activity.BENEFICIARYFIRSTNAME +
-                              " " +
-                              activity.BENEFICIARYLASTNAME,
-                           activity.PROVIDERFIRSTNAME +
-                              " " +
-                              activity.PROVIDERLASTNAME,
-                           <InfoLabel color={1}>{activity.STATE}</InfoLabel>,
-                           <Counter>{activity.RATING}</Counter>,
-                        ],
-                     };
+                     let description = activity.SERVICEDESCRIPTION
+                        ? activity.SERVICEDESCRIPTION.substring(0, 80) + "..."
+                        : activity.OPPORTUNITYDESCRIPTION.substring(0, 80) +
+                          "...";
+
+                     description = isMobile
+                        ? description.substring(0, 40) + "..."
+                        : description;
+                     let activityDate = formatDate(activity.ACTIVITYDATE);
+                     let beneficiary =
+                        activity.BENEFICIARYFIRSTNAME +
+                        " " +
+                        activity.BENEFICIARYLASTNAME;
+                     let provider =
+                        activity.PROVIDERFIRSTNAME +
+                        " " +
+                        activity.PROVIDERLASTNAME;
+
+                     let data = isMobile
+                        ? {
+                             rowData: [
+                                <LayoutPanel>
+                                   <LayoutPanel.Body>
+                                      <p>
+                                         <b>Date: </b>
+                                         {activityDate}
+                                      </p>
+                                      <p>
+                                         <b>Beneficiary: </b>
+                                         {beneficiary}
+                                      </p>
+                                      <p>
+                                         <b>Provider: </b>
+                                         {provider}
+                                      </p>
+                                      <br></br>
+                                      <p>{description}</p>
+                                      <br></br>
+                                      <p>
+                                         <b>State: </b>
+                                         <InfoLabel color={1}>
+                                            {activity.STATE}
+                                         </InfoLabel>
+                                      </p>
+                                      <p>
+                                         <b>Rating: </b>
+                                         <Counter>{activity.RATING}</Counter>
+                                      </p>
+                                   </LayoutPanel.Body>
+                                </LayoutPanel>,
+                             ],
+                          }
+                        : {
+                             rowData: [
+                                description,
+                                <InfoLabel color={6}>
+                                   {activity.INITIATEDBY}
+                                </InfoLabel>,
+                                activityDate,
+                                beneficiary,
+                                provider,
+                                <InfoLabel color={1}>
+                                   {activity.STATE}
+                                </InfoLabel>,
+                                <Counter>{activity.RATING}</Counter>,
+                             ],
+                          };
+
+                     return data;
                   })
                );
             }
@@ -110,11 +160,13 @@ const MyOrders = () => {
    }, [isAuthenticated, user, defaultData]);
 
    const formatDate = (startDate) => {
-      let myDate = new Date(startDate);
+      /* let myDate = new Date(startDate);
 
       return `${myDate.getUTCFullYear()}-${
          myDate.getUTCMonth() + 1
-      }-${myDate.getUTCDate()}`;
+      }-${myDate.getUTCDate()}`; */
+
+      return startDate.substring(0, 10);
    };
 
    const getMyActivities = async (id) => {
@@ -151,7 +203,6 @@ const MyOrders = () => {
                   tableLayout: "auto",
                }}
                headers={defaultHeaders}
-               richTable
                tableData={defaultData}
             ></Table>
          ) : (

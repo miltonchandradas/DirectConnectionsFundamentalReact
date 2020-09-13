@@ -1,20 +1,13 @@
 import React, { useContext, useState, useEffect, Fragment } from "react";
 
 import axios from "axios";
-
-/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
-import { Panel } from "fundamental-react/lib/Panel"; */
-
-import { Container, Row, Column } from "fundamental-react";
-import { Button } from "fundamental-react/lib/Button";
-import { ComboboxInput } from "fundamental-react/lib/ComboboxInput";
-import { Table } from "fundamental-react/lib/Table";
+import { isMobile } from "react-device-detect";
 
 import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 import ServiceContext from "../../context/service/serviceContext";
 
-import { categories } from "../../data/data";
+/* import { categories } from "../../data/data"; */
 
 import {
    FormFieldset,
@@ -22,10 +15,17 @@ import {
    FormItem,
    FormInput,
    FormLegend,
-} from "fundamental-react/lib/Forms";
-import { MessageStrip } from "fundamental-react/lib/MessageStrip";
-import { Link } from "fundamental-react/lib/Link";
-import { InfoLabel } from "fundamental-react/lib/InfoLabel";
+   MessageStrip,
+   Link,
+   InfoLabel,
+   Container,
+   Row,
+   Column,
+   Button,
+   ComboboxInput,
+   Table,
+   LayoutPanel,
+} from "fundamental-react";
 
 const MyAccount = () => {
    const authContext = useContext(AuthContext);
@@ -38,20 +38,44 @@ const MyAccount = () => {
    const [displayMessage, setDisplayMessage] = useState(false);
    const [selectedKey, setSelectedKey] = useState("0");
 
-   const [defaultHeaders, setDefaultHeaders] = useState([
-      <Link subtle>Description</Link>,
-      <Link subtle>Start Date</Link>,
-      <Link subtle>State</Link>,
-   ]);
    const [defaultData, setDefaultData] = useState([]);
 
    const marginStyle = {
       marginTop: "20px",
    };
 
-   const isPast = (startDate) => {
-      return new Date(startDate) < new Date();
+   const formatDate = (startDate) => {
+      /* let myDate = new Date(startDate);
+
+      return `${myDate.getUTCFullYear()}-${
+         myDate.getUTCMonth() + 1
+      }-${myDate.getUTCDate()}`;
+      */
+      return startDate.substring(0, 10);
    };
+
+   const categories = [
+      {
+         key: "1",
+         text: "Grocery Pickup",
+      },
+      {
+         key: "2",
+         text: "Giving Rides",
+      },
+      {
+         key: "3",
+         text: "Home Improvement",
+      },
+      {
+         key: "4",
+         text: "Tuition",
+      },
+      {
+         key: "5",
+         text: "Home Helper",
+      },
+   ];
 
    useEffect(() => {
       if (!user) {
@@ -66,13 +90,45 @@ const MyAccount = () => {
                console.log("My Services is now being populated...");
                await setDefaultData(
                   myServices.map((service) => {
-                     return {
-                        rowData: [
-                           `${service.DESCRIPTION.substring(0, 65)}...`,
-                           formatDate(service.STARTDATE),
-                           <InfoLabel color={1}>{service.STATE}</InfoLabel>,
-                        ],
-                     };
+                     let startDate = formatDate(service.STARTDATE);
+                     let description = isMobile
+                        ? service.DESCRIPTION.substring(0, 40) + "..."
+                        : service.DESCRIPTION.substring(0, 65) + "...";
+
+                     let data = isMobile
+                        ? {
+                             rowData: [
+                                <LayoutPanel>
+                                   <LayoutPanel.Body>
+                                      <p>
+                                         <b>Date: </b>
+                                         {startDate}
+                                      </p>
+                                      <br></br>
+                                      <p>{description}</p>
+                                      <br></br>
+                                      <p>
+                                         <b>State: </b>
+                                         <InfoLabel color={1}>
+                                            {service.STATE}
+                                         </InfoLabel>
+                                      </p>
+                                   </LayoutPanel.Body>
+                                </LayoutPanel>,
+                             ],
+                          }
+                        : {
+                             rowData: [
+                                description,
+                                startDate,
+                                <InfoLabel color={1}>
+                                   {service.STATE}
+                                </InfoLabel>,
+                             ],
+                          };
+
+                     console.log("Row Data: ", data);
+                     return data;
                   })
                );
             }
@@ -84,13 +140,13 @@ const MyAccount = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isAuthenticated, user, defaultData]);
 
-   const formatDate = (startDate) => {
-      let myDate = new Date(startDate);
-
-      return `${myDate.getUTCFullYear()}-${
-         myDate.getUTCMonth() + 1
-      }-${myDate.getUTCDate()}`;
-   };
+   const defaultHeaders = isMobile
+      ? [<Link subtle>My Services</Link>]
+      : [
+           <Link subtle>Description</Link>,
+           <Link subtle>Start Date</Link>,
+           <Link subtle>State</Link>,
+        ];
 
    const onSubmitClick = async (e) => {
       /* setEditMode(true); */
@@ -128,104 +184,134 @@ const MyAccount = () => {
 
          <Container>
             <Row>
-               {user && (
-                  <Column>
-                     <FormFieldset>
-                        <FormItem>
-                           <FormLabel htmlFor="ex01">Name:</FormLabel>
-                           <FormInput
-                              id="ex01"
-                              readOnly
-                              value={`${user.FIRSTNAME} ${user.LASTNAME}`}
-                           ></FormInput>
-                        </FormItem>
-                        <FormItem>
-                           <FormLabel htmlFor="ex04">Email:</FormLabel>
-                           <FormInput id="ex04" readOnly value={user.EMAIL} />
-                        </FormItem>
-                        <FormItem>
-                           <FormLabel htmlFor="ex02">Address:</FormLabel>
-                           <FormInput
-                              id="ex02"
-                              readOnly={user.FORMATTEDADDRESS !== ""}
-                              value={user.FORMATTEDADDRESS}
-                           />
-                        </FormItem>
-                        <FormItem>
-                           <FormLabel htmlFor="cbCategory">
-                              Volunteering Category:
-                           </FormLabel>
-                           <ComboboxInput
-                              id="cbCategory"
-                              onSelect={function s(e, option) {
-                                 setSelectedKey(option.key);
-                              }}
-                              options={categories}
-                              placeholder="Select a category"
-                              selectedKey={
-                                 user.CATEGORY_ID
-                                    ? user.CATEGORY_ID.toString()
-                                    : selectedKey
-                              }
-                           />
-                        </FormItem>
-
-                        <Button
-                           style={marginStyle}
-                           onClick={function s() {
-                              onSubmitClick();
-                           }}
-                        >
-                           Submit
-                        </Button>
-                        {displayMessage && (
-                           <MessageStrip
-                              type="success"
-                              dismissible="true"
-                              style={marginStyle}
-                           >
-                              Successfully updated user info...
-                           </MessageStrip>
-                        )}
-                     </FormFieldset>
-                  </Column>
-               )}
-            </Row>
-            <Row>
-               {user && (
-                  <Column>
-                     <FormFieldset>
-                        <FormLegend>Services Provided</FormLegend>
-                        <FormItem>
-                           {myServices ? (
-                              <Fragment>
-                                 <Table
-                                    style={{
-                                       border: "1px solid black",
-                                       tableLayout: "auto",
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 3,
+                     xLargeScreen: 3,
+                  }}
+               >
+                  {user && (
+                     <LayoutPanel>
+                        <LayoutPanel.Body>
+                           <FormFieldset>
+                              <FormItem>
+                                 <FormLabel htmlFor="ex01">Name:</FormLabel>
+                                 <FormInput
+                                    id="ex01"
+                                    readOnly
+                                    value={`${user.FIRSTNAME} ${user.LASTNAME}`}
+                                 ></FormInput>
+                              </FormItem>
+                              <FormItem>
+                                 <FormLabel htmlFor="ex04">Email:</FormLabel>
+                                 <FormInput
+                                    id="ex04"
+                                    readOnly
+                                    value={user.EMAIL}
+                                 />
+                              </FormItem>
+                              <FormItem>
+                                 <FormLabel htmlFor="ex02">Address:</FormLabel>
+                                 <FormInput
+                                    id="ex02"
+                                    readOnly={user.FORMATTEDADDRESS !== ""}
+                                    value={user.FORMATTEDADDRESS}
+                                 />
+                              </FormItem>
+                              <FormItem>
+                                 <FormLabel htmlFor="cbCategory">
+                                    Volunteering Category:
+                                 </FormLabel>
+                                 <ComboboxInput
+                                    disabled={true}
+                                    id="cbCategory"
+                                    arrowLabel="Show categories"
+                                    onSelectionChange={function s(e, option) {
+                                       console.log("Options: ", option);
+                                       setSelectedKey(option.key);
                                     }}
-                                    headers={defaultHeaders}
-                                    richTable
-                                    tableData={defaultData}
-                                 ></Table>
-                              </Fragment>
-                           ) : (
-                              <Fragment>
+                                    options={categories}
+                                    selectionType="auto-inline"
+                                    placeholder="Select a category"
+                                    selectedKey={
+                                       user.CATEGORY_ID
+                                          ? user.CATEGORY_ID.toString()
+                                          : selectedKey
+                                    }
+                                 />
+                              </FormItem>
+
+                              <Button
+                                 disabled={true}
+                                 style={marginStyle}
+                                 onClick={function s() {
+                                    onSubmitClick();
+                                 }}
+                              >
+                                 Submit
+                              </Button>
+                              {displayMessage && (
                                  <MessageStrip
+                                    type="success"
+                                    dismissible="true"
                                     style={marginStyle}
-                                    type="warning"
                                  >
-                                    Currently, you do not provide any services
+                                    Successfully updated user info...
                                  </MessageStrip>
-                                 <Link href="/myservices">
-                                    Click here to add a service...
-                                 </Link>
-                              </Fragment>
-                           )}
-                        </FormItem>
-                     </FormFieldset>
-                  </Column>
-               )}
+                              )}
+                           </FormFieldset>
+                        </LayoutPanel.Body>
+                     </LayoutPanel>
+                  )}
+               </Column>
+
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 9,
+                     xLargeScreen: 9,
+                  }}
+               >
+                  {user && (
+                     <LayoutPanel>
+                        <LayoutPanel.Body>
+                           <FormFieldset>
+                              <FormLegend>Services Provided</FormLegend>
+                              <FormItem>
+                                 {myServices ? (
+                                    <Fragment>
+                                       <Table
+                                          /* style={{
+                                             border: "1px solid black",
+                                             tableLayout: "auto",
+                                          }} */
+                                          headers={defaultHeaders}
+                                          tableData={defaultData}
+                                       ></Table>
+                                    </Fragment>
+                                 ) : (
+                                    <Fragment>
+                                       <MessageStrip
+                                          style={marginStyle}
+                                          type="warning"
+                                       >
+                                          Currently, you do not provide any
+                                          services
+                                       </MessageStrip>
+                                       <Link href="/myservices">
+                                          Click here to add a service...
+                                       </Link>
+                                    </Fragment>
+                                 )}
+                              </FormItem>
+                           </FormFieldset>
+                        </LayoutPanel.Body>
+                     </LayoutPanel>
+                  )}
+               </Column>
             </Row>
          </Container>
       </section>

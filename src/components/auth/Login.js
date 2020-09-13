@@ -5,12 +5,12 @@ import {
    FormInput,
    FormItem,
    FormLabel,
-} from "fundamental-react/lib/Forms";
-/* import { LayoutGrid } from "fundamental-react/lib/LayoutGrid";
-import { Panel } from "fundamental-react/lib/Panel"; */
-import { Button } from "fundamental-react/lib/Button";
-
-import { Container, Row, Column } from "fundamental-react";
+   Button,
+   Container,
+   Row,
+   Column,
+   LayoutPanel,
+} from "fundamental-react";
 
 import FacebookLogin from "react-facebook-login";
 
@@ -113,92 +113,115 @@ const Login = (props) => {
          <h2>Login</h2>
 
          <Container>
-            <Row>
-               <Column>
-                  <h1>
-                     Account <span className="h1 h1-span">Login</span>
-                  </h1>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-3" required>
-                           Email
-                        </FormLabel>
-                        <FormInput
-                           id="input-3"
-                           name="email"
-                           placeholder="Email"
-                           type="email"
-                           onChange={onChangeHandler}
-                           validationState={
-                              !isNew
-                                 ? isEmailValid
-                                    ? {
-                                         state: "success",
-                                         text: "The email is valid...",
-                                      }
-                                    : {
-                                         state: "",
-                                         text: "Please enter a valid email...",
-                                      }
-                                 : {
-                                      state: "",
-                                      text: "Please enter your email...",
-                                   }
-                           }
-                        />
-                     </FormItem>
-                  </FormGroup>
-                  <FormGroup>
-                     <FormItem>
-                        <FormLabel htmlFor="input-4" required>
-                           Password
-                        </FormLabel>
-                        <FormInput
-                           id="input-4"
-                           name="password"
-                           placeholder="Password"
-                           onChange={onChangeHandler}
-                           validationState={
-                              !isNew
-                                 ? isPasswordValid
-                                    ? {
-                                         state: "success",
-                                         text:
-                                            "The password length is valid...",
-                                      }
-                                    : {
-                                         state: "",
-                                         text:
-                                            "Password must be at  least 4 characters...",
-                                      }
-                                 : {
-                                      state: "",
-                                      text: "Please enter your password...",
-                                   }
-                           }
-                           type="password"
-                        />
-                     </FormItem>
-                  </FormGroup>
-
-                  <Button className="fr-button" onClick={onSubmitHandler}>
-                     Login
-                  </Button>
-               </Column>
-            </Row>
             <Row className="fr-panel">
-               <Column>
-                  <h1>
-                     Login with <span className="h1 h1-span">Facebook</span>
-                  </h1>
-                  <div className="fb-container">
-                     <FacebookLogin
-                        appId="716272092446596"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        callback={responseFacebook}
-                     />
-                  </div>
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 6,
+                     xLargeScreen: 6,
+                  }}
+               >
+                  <LayoutPanel style={{ height: "100%" }}>
+                     <LayoutPanel.Body>
+                        <h1>
+                           Account <span className="h1 h1-span">Login</span>
+                        </h1>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-3" required>
+                                 Email
+                              </FormLabel>
+                              <FormInput
+                                 id="input-3"
+                                 name="email"
+                                 placeholder="Email"
+                                 type="email"
+                                 onChange={onChangeHandler}
+                                 validationState={
+                                    !isNew
+                                       ? isEmailValid
+                                          ? {
+                                               state: "success",
+                                               text: "The email is valid...",
+                                            }
+                                          : {
+                                               state: "",
+                                               text:
+                                                  "Please enter a valid email...",
+                                            }
+                                       : {
+                                            state: "",
+                                            text: "Please enter your email...",
+                                         }
+                                 }
+                              />
+                           </FormItem>
+                        </FormGroup>
+                        <FormGroup>
+                           <FormItem>
+                              <FormLabel htmlFor="input-4" required>
+                                 Password
+                              </FormLabel>
+                              <FormInput
+                                 id="input-4"
+                                 name="password"
+                                 placeholder="Password"
+                                 onChange={onChangeHandler}
+                                 validationState={
+                                    !isNew
+                                       ? isPasswordValid
+                                          ? {
+                                               state: "success",
+                                               text:
+                                                  "The password length is valid...",
+                                            }
+                                          : {
+                                               state: "",
+                                               text:
+                                                  "Password must be at  least 4 characters...",
+                                            }
+                                       : {
+                                            state: "",
+                                            text:
+                                               "Please enter your password...",
+                                         }
+                                 }
+                                 type="password"
+                              />
+                           </FormItem>
+                        </FormGroup>
+
+                        <Button className="fr-button" onClick={onSubmitHandler}>
+                           Login
+                        </Button>
+                     </LayoutPanel.Body>
+                  </LayoutPanel>
+               </Column>
+               <Column
+                  span={{
+                     smallScreen: 12,
+                     mediumScreen: 12,
+                     largeScreen: 6,
+                     xLargeScreen: 6,
+                  }}
+               >
+                  <LayoutPanel style={{ height: "100%" }}>
+                     <LayoutPanel.Body>
+                        <h1>
+                           Login with{" "}
+                           <span className="h1 h1-span">Facebook</span>
+                        </h1>
+                        <div className="fb-container">
+                           <FacebookLogin
+                              appId="716272092446596"
+                              autoLoad={false}
+                              fields="name,email,picture"
+                              callback={responseFacebook}
+                           />
+                        </div>
+                     </LayoutPanel.Body>
+                  </LayoutPanel>
                </Column>
             </Row>
          </Container>

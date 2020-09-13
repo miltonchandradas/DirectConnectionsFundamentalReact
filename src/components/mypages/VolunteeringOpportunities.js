@@ -5,26 +5,13 @@ import AuthContext from "../../context/auth/authContext";
 import MessageContext from "../../context/message/messageContext";
 import OpportunityContext from "../../context/opportunity/opportunityContext";
 
-import { Link } from "fundamental-react/lib/Link";
-
-import { MessageStrip } from "fundamental-react/lib/MessageStrip";
+import { Link, MessageStrip } from "fundamental-react";
 
 import {
-   Badge,
-   Button,
-   Card,
-   Text,
    FlexBox,
    FlexBoxJustifyContent,
    FlexBoxWrap,
-   Icon,
 } from "@ui5/webcomponents-react";
-import { spacing } from "@ui5/webcomponents-react-base";
-
-import "@ui5/webcomponents-icons/dist/icons/line-chart.js";
-import "@ui5/webcomponents-icons/dist/icons/horizontal-bar-chart.js";
-import "@ui5/webcomponents-icons/dist/icons/table-view.js";
-import "@ui5/webcomponents-icons/dist/icons/list.js";
 
 import "@ui5/webcomponents-icons/dist/icons/add-employee.js";
 
