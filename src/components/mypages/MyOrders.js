@@ -57,8 +57,10 @@ const MyOrders = () => {
                   myActivities.map((activity) => {
                      let description = activity.SERVICEDESCRIPTION
                         ? activity.SERVICEDESCRIPTION.substring(0, 80) + "..."
-                        : activity.OPPORTUNITYDESCRIPTION.substring(0, 80) +
-                          "...";
+                        : activity.OPPORTUNITYDESCRIPTION
+                        ? activity.OPPORTUNITYDESCRIPTION.substring(0, 80) +
+                          "..."
+                        : `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos dolor sint, beatae quia nobis, a perspiciatis...`;
 
                      description = isMobile
                         ? description.substring(0, 40) + "..."

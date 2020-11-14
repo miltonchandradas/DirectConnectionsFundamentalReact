@@ -15,7 +15,7 @@
     "@ui5/webcomponents-react-charts": "^0.9.9",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.1",
-    "fundamental-react": "^0.13.0-rc.18",
+    "fundamental-react": "^0.13.0-rc.21",
     "lorem-ipsum": "^2.0.3",
     "random-date-generator": "^1.0.2",
     "react": "^16.13.1",

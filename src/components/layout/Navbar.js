@@ -319,10 +319,11 @@ const Navbar = (props) => {
             profile={
                isAuthenticated && user
                   ? {
-                       image:
-                          user.FIRSTNAME === "Milton"
-                             ? profilepic
-                             : "https://picsum.photos/50",
+                       image: user.ISFACEBOOKUSER
+                          ? user.PHOTOURL
+                          : user.FIRSTNAME === "Milton"
+                          ? profilepic
+                          : "https://picsum.photos/50",
                        userName: `${user.FIRSTNAME} ${user.LASTNAME}`,
                     }
                   : {}

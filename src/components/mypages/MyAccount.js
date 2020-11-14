@@ -36,7 +36,7 @@ const MyAccount = () => {
    const { myServices, getMyServices } = serviceContext;
 
    const [displayMessage, setDisplayMessage] = useState(false);
-   const [selectedKey, setSelectedKey] = useState("0");
+   const [selectedKey, setSelectedKey] = useState("1");
 
    const [defaultData, setDefaultData] = useState([]);
 
@@ -221,12 +221,9 @@ const MyAccount = () => {
                                  />
                               </FormItem>
                               <FormItem>
-                                 <FormLabel htmlFor="cbCategory">
-                                    Volunteering Category:
-                                 </FormLabel>
                                  <ComboboxInput
-                                    disabled={true}
                                     id="cbCategory"
+                                    label="Volunteering Category:"
                                     arrowLabel="Show categories"
                                     onSelectionChange={function s(e, option) {
                                        console.log("Options: ", option);
@@ -244,7 +241,6 @@ const MyAccount = () => {
                               </FormItem>
 
                               <Button
-                                 disabled={true}
                                  style={marginStyle}
                                  onClick={function s() {
                                     onSubmitClick();
@@ -255,7 +251,7 @@ const MyAccount = () => {
                               {displayMessage && (
                                  <MessageStrip
                                     type="success"
-                                    dismissible="true"
+                                    dismissible
                                     style={marginStyle}
                                  >
                                     Successfully updated user info...
