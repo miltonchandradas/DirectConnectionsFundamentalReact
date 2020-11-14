@@ -1,6 +1,14 @@
-export default function swDev() {
+export const swDev = () => {
    let swUrl = `${process.env.PUBLIC_URL}/sw.js`;
-   navigator.serviceWorker.register(swUrl).then((response) => {
-      console.warn("Response: ", response);
-   });
-}
+
+   if (navigator.serviceWorker) {
+      window.addEventListener("load", () => {
+         navigator.serviceWorker
+            .register(swUrl)
+            .then((reg) => console.log("Service worker registered..."))
+            .catch((err) =>
+               console.log(`Service worker registration failed.  Error: ${err}`)
+            );
+      });
+   }
+};
